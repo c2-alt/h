@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>127邮箱 - 登录与收件箱</title>
+    <style>
+        :root {
+            --primary-blue: #0073e6;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-gray: #666666;
+            --border-color: #dcdcdc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部栏 */
+        header {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mail-logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* 登录遮罩层容器 */
+        #login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 380px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .login-box p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .error-msg {
+            color: #d9534f;
+            font-size: 0.82rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* 邮箱主界面（初始隐藏） */
+        #mail-app {
+            display: none;
+            flex: 1;
+            flex-direction: row;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* 左侧邮件列表 */
+        .mail-sidebar {
+            width: 320px;
+            border-right: 1px solid var(--border-color);
+            background-color: #f8f9fa;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 15px 20px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #ffffff;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .mail-list-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .mail-list-item:hover, .mail-list-item.active {
+            background-color: #e6f0fa;
+        }
+
+        .mail-item-sender {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #222;
+        }
+
+        .mail-item-subject {
+            font-size: 0.85rem;
+            color: #555;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .mail-item-time {
+            font-size: 0.75rem;
+            color: #999;
+        }
+      /* 右侧邮件正文内容 */
+        .mail-content-pane {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-color: #ffffff;
+        }
+
+        .empty-tip {
+            color: #aaa;
+            text-align: center;
+            margin-top: 100px;
+            font-size: 0.95rem;
+        }
+
+        .mail-detail h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .mail-meta-box {
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .mail-body-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .post-img {
+            max-width: 100%;
+            max-height: 350px;
+            border-radius: 6px;
+            margin-top: 12px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* 决策选项框样式 */
+        .choice-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .choice-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .btn-expose {
+            background-color: #d9534f;
+            color: white;
+        }
+
+        .btn-expose:hover {
+            background-color: #c9302c;
+        }
+
+        .btn-exit {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-exit:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            #mail-app {
+                flex-direction: column;
+            }
+            .mail-sidebar {
+                width: 100%;
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部状态栏 -->
+    <header>
+        <div class="mail-logo">127 Mail - 个人安全邮箱</div>
+        <div id="user-status" style="font-size: 0.85rem; color: #aaa;">dingshengqgy@127.com</div>
+    </header>
+
+    <!-- 登录模块 -->
+    <div id="login-container">
+        <div class="login-box">
+            <h2>身份验证</h2>
+            <p>请输入密码以访问账户 (提示：重要年份 四位数)</p >
+            <input type="password" id="pwd-input" class="input-field" placeholder="请输入四位数密码">
+            <button class="login-btn" onclick="verifyPassword()">登 录</button>
+            <div id="error-tip" class="error-msg">密码错误，请重新输入！</div>
+        </div>
+    </div>
+
+    <!-- 登录后的邮箱主界面 -->
+    <div id="mail-app">
+        <!-- 左侧邮件列表 -->
+        <div class="mail-sidebar">
+            <div class="sidebar-header">收件箱 (6)</div>
+            
+            <div class="mail-list-item" onclick="showMail(0)">
+                <div class="mail-item-sender">秦昭然</div>
+                <div class="mail-item-subject">新躯体适应良好</div>
+                <div class="mail-item-time">2022-04-10 22:15</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(1)">
+                <div class="mail-item-sender">许斯文</div>
+                <div class="mail-item-subject">Re: 新躯体适应良好</div>
+                <div class="mail-item-time">2022-04-11 08:40</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(2)">
+                <div class="mail-item-sender">秦昭然</div>
+                <div class="mail-item-subject">傲城的体检报告（急）</div>
+                <div class="mail-item-time">2022-11-05 23:50</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(3)">
+                <div class="mail-item-sender">许斯文</div>
+                <div class="mail-item-subject">匹配结果</div>
+                <div class="mail-item-time">2022-11-07 14:10</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(4)">
+                <div class="mail-item-sender">秦昭然</div>
+                <div class="mail-item-subject">方案</div>
+                <div class="mail-item-time">2022-11-07 18:30</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(5)">
+                <div class="mail-item-sender">许斯文</div>
+                <div class="mail-item-subject">Re: 方案</div>
+                <div class="mail-item-time">2022-11-08 09:05</div>
+            </div>
+        </div>
+
+        <!-- 右侧邮件内容展示区 -->
+        <div class="mail-content-pane">
+            <div id="empty-view" class="empty-tip">请选择左侧的一封邮件进行阅读</div>
+            <div id="detail-view" style="display: none;" class="mail-detail">
+                <h3 id="mail-subject">主题标题</h3>
+                <div class="mail-meta-box">
+                    <div><strong>发件人：</strong><span id="mail-from"></span></div>
+                    <div><strong>收件人：</strong><span id="mail-to"></span></div>
+                    <div><strong>时间：</strong><span id="mail-time"></span></div>
+                </div>
+                <div class="mail-body-text" id="mail-body">邮件正文内容</div>
+                <div id="extra-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 邮件数据源
+        const mails = [
+            {
+                subject: "新躯体适应良好",
+                from: "秦昭然 <dingshengqgy@127.com>",
+                to: "许斯文 <xusiwen_@renan-hospital.org>",
+                time: "2022-04-10 22:15:08",
+                body: "老陈，我这具新身体适应得非常好。这姑娘年轻，血管弹性好，心肺功能也是顶尖的，之前老身子上那点心脏病和高血压一扫而空。\n\n亲身体验过这套手术后，我更加确信，这不是单纯的医疗课题，这是印钞机，更是永生的门票。 那些把持着几千亿资产却半截身子入土的老家伙，愿意为了多活三十年把一半的身家双手奉上。\n\n鼎盛账上的第二期专项黑盒资金还有1.2个亿，下周会通过境外建材采购通道分批打入你的私人账户。你需要尽快把“Nexus-0”项目标准化，把排异反应和术后认知对齐的成功率提升到90%以上。我们需要尽快对外开辟高端VIP会员通道。",
+                hasImage: false,
+                isLast: false
+            },
+            {
+                subject: "Re: 新躯体适应良好",
+                from: "许斯文 <xusiwen_@renan-hospital.org>",
+                to: "秦昭然 <dingshengqgy@127.com>",
+                time: "2022-04-11 08:40:22",
+                body: "恭喜你重获新生。我也觉得现在这具年轻躯体用起来顺手得多，至少做十几小时的显微外科手术手不会再抖了。\n\n资金收到后我会立刻用于采购第三代智能纳米电极。不过我要提醒你，换脑术对受体躯体的要求极高，不仅需要年轻、健康，还必须要求基因与神经信号高度适配。目前适合做“容器”的顶级活体样本依然极度匮乏，商业化不能操之过急。\n\n另外，你那个儿子，处理得还干净吗？没留下尾巴吧？",
+                hasImage: false,
+                isLast: false
+            },
+            {
+                subject: "傲城的体检报告（急）",
+                from: "秦昭然 <dingshengqgy@127.com>",
+                to: "许斯文 <xusiwen_@renan-hospital.org>",
+                time: "2022-11-05 23:50:11",
+                body: "死有余辜，不用提他。我现在心烦的是傲城。\n\n傲城前几年生焉焉的时候大出血，体内雌激素和孕激素指标严重失衡。今天仁安VIP中心给出的最新筛查结果出来了。\n\n傲城这孩子从小就是我娇生惯养长大的，天真又听话，我就这么一个贴心的女儿，绝不能让她死了。\n\n你立刻在仁安的生物样本库和华东高校体检数据库里给我筛！找一个能够和傲城器官完全匹配、免疫源性高度吻合的容器，我们要给她做器官置换！",
+                hasImage: true,
+                imageSrc: "medical.jpg",
+                isLast: false
+            },
+            {
+                subject: "匹配结果",
+                from: "许斯文 <xusiwen_@renan-hospital.org>",
+                to: "秦昭然 <dingshengqgy@127.com>",
+                time: "2022-11-07 14:10:55",
+                body: "运气不错，有个女孩叫闻粤，29岁，健康状况极佳，组织配型与傲城的重合度高达98.2%，简直就是天生给傲城准备的备用血包与器官库。\n\n但现在有个棘手的问题：直接绑架或者强行匹配风险太大，这女孩有社会关系，且死因如果引起警方怀疑，会把我们的实验室暴露在光天化日之下。",
+                hasImage: false,
+                isLast: false
+            },
+            {
+                subject: "方案",
+                from: "秦昭然 <dingshengqgy@127.com>",
+                to: "许斯文 <xusiwen_@renan-hospital.org>",
+                time: "2022-11-07 18:30:40",
+                body: "既然不能硬来，那就用最稳妥的合法手段。\n\n你现在披着许斯文的皮囊，三十出头、医学博士、仁安最年轻的主任医师，对普通女人有着致命的吸引力。你去追她。\n\n用最快的速度把那个叫闻粤的女孩拿下，跟她结婚。只要她成了你的合法妻子，后续所有的医疗知情同意书、身体检查、乃至意外身亡后的器官捐献协议，全都可以由你这个合法丈夫一手操办。\n\n等傲城体内的癌细胞到了极限，就制造一场合规的交通意外或者医疗意外，把闻粤的肝拆下来移植给傲城。",
+                hasImage: false,
+                isLast: false
+            },
+            {
+                subject: "Re: 方案",
+                from: "许斯文 <xusiwen_@renan-hospital.org>",
+                to: "秦昭然 <dingshengqgy@127.com>",
+                time: "2022-11-08 09:05:12",
+                body: "懂了，婚姻是最好的掩体。\n\n凭许斯文这张脸和身段，搞定一个二三十岁的小姑娘轻而易举。\n\n我会尽快建立亲密关系，争取一年内完婚。婚后我会按剂量给她注射微量免疫耐受诱导剂，确保到时候器官移植给傲城时排异反应降到最低。\n\n傲城那边你先用药拖着，随时保持联系。",
+                hasImage: false,
+                isLast: true
+            }
+        ];
+
+        function verifyPassword() {
+            const pwd = document.getElementById('pwd-input').value;
+            const errorTip = document.getElementById('error-tip');
+
+            if(pwd === '2002') {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('mail-app').style.display = 'flex';
+            } else {
+                errorTip.style.display = 'block';
+            }
+        }
+
+        function showMail(index) {
+            // 切换高亮样式
+            const items = document.querySelectorAll('.mail-list-item');
+            items.forEach((item, idx) => {
+                if(idx === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // 填充邮件内容
+            const mail = mails[index];
+            document.getElementById('empty-view').style.display = 'none';
+            document.getElementById('detail-view').style.display = 'block';
+
+            document.getElementById('mail-subject').innerText = mail.subject;
+            document.getElementById('mail-from').innerText = mail.from;
+            document.getElementById('mail-to').innerText = mail.to;
+            document.getElementById('mail-time').innerText = mail.time;
+            document.getElementById('mail-body').innerText = mail.body;
+
+            // 处理图片及最后选项
+            const extraContainer = document.getElementById('extra-container');
+            extraContainer.innerHTML = '';
+
+            if (mail.hasImage) {
+                const img = document.createElement('img');
+                img.src = mail.imageSrc;
+                img.alt = "检查报告";
+                img.className = "post-img";
+                extraContainer.appendChild(img);
+            }
+
+            if (mail.isLast) {
+                const choiceBox = document.createElement('div');
+                choiceBox.className = "choice-box";
+                choiceBox.innerHTML = `
+                    <span style="font-size: 14px; font-weight: bold; color: #333;">【决策选项】请选择你的行动：</span>
+                    <a href="expose_ending.html" class="choice-btn btn-expose">选项一：立刻曝光</a >
+                    <a href="exit_ending.html" class="choice-btn btn-exit">选项二：默默退出</a >
+                `;
+                extraContainer.appendChild(choiceBox);
+            }
+        }
+    </script>
+</body>
+</html>
