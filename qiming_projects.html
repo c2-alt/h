@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研项目 - 仁安启明实验组</title>
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --accent-blue: #0066cc;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border-color: #e2e8f0;
+            --secret-red: #8b0000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* 顶部 Header */
+        header {
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lab-logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+        }
+
+        /* 主体内容 */
+        main {
+            max-width: 1050px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            font-size: 1.6rem;
+            color: var(--primary-navy);
+            font-weight: bold;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* 项目卡片通用样式 */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 12px;
+        }
+
+        .project-id-title {
+            flex: 1;
+        }
+
+        .project-id {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--primary-navy);
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .meta-item strong {
+            color: var(--text-dark);
+        }
+
+        .project-body h4 {
+            font-size: 1rem;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .project-desc, .project-progress {
+            font-size: 0.95rem;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .progress-tag {
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.82rem;
+            margin-right: 6px;
+        }
+
+        /* 项目四 - 锁定状态样式 */
+        .locked-project {
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            color: #999;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .input-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pwd-input {
+            padding: 10px;
+            border: 1px solid #444;
+            background: #222;
+            color: #eee;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .unlock-btn {
+            background: #444;
+            color: #ccc;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 项目四 - 解锁后样式 */
+        .secret-project-unlocked {
+            display: none;
+            border: 2px solid var(--secret-red);
+            background-color: #fffafa;
+        }
+
+        .secret-title {
+            color: var(--secret-red) !important;
+        }
+
+        .secret-subheading {
+            color: var(--secret-red);
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            border-bottom: 1px solid #ffcccc;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-navy);
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 600px) {
+            .project-header { flex-direction: column; }
+            .project-meta { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href=" " class="lab-logo">🧬 仁安启明实验组</a >
+            <nav>
+                <a href="qiming_lab_home.html" class="nav-link">首页</a >
+                <a href="qiming_projects.html" class="nav-link active">科研项目</a >
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="page-title">重点科研项目与临床试验</h2>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-id-title">
+                    <div class="project-id">QM-2021-CV01</div>
+                    <h3 class="project-title">基于微环境重构的终末期心肌梗死细胞干预与修复机制研究</h3>
+                </div>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>负责人：</strong> 许斯文 博士</div>
+                <div class="meta-item"><strong>周期：</strong> 2021.01 — 2024.12（预计）</div>
+                <div class="meta-item"><strong>研究方向：</strong> 心肌细胞再生 / 生物材料</div>
+            </div>
+            <div class="project-body">
+                <h4>项目简介</h4>
+                <p class="project-desc">急性心肌梗死后，心肌细胞的不可逆坏死与纤维化是导致终末期心力衰竭的主要原因。本项目旨在通过注射新型生物相容性水凝胶载体，搭载高选择性心肌促生因子，精准投递至梗死边界区。通过改善局部微环境、抑制心肌重塑与促进微血管生成，达到保护残留心肌细胞功能、逆转心力衰竭进程的目的。</p >
+                <h4>目前进展</h4>
+                <p class="project-progress"><span class="progress-tag">进行中</span>正在开展大动物（小型猪）急性心肌梗死模型的长期安全性与有效性评估，成果已进入临床前数据汇总阶段。</p >
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-id-title">
+                    <div class="project-id">QM-2021-NC02</div>
+                    <h3 class="project-title">高阶中枢神经与心肌电信号协同调控机制及介入干预研究</h3>
+                </div>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>负责人：</strong> 许斯文 博士（发起人：陈启明）</div>
+                <div class="meta-item"><strong>周期：</strong> 2020.08 — 2025.08（预计）</div>
+                <div class="meta-item"><strong>研究方向：</strong> 心血管电生理 / 中枢神经调控</div>
+            </div>
+            <div class="project-body">
+                <h4>项目简介</h4>
+                <p class="project-desc">心血管系统受自主神经系统的深度调控，而中枢神经高阶核团在恶性心律失常及心源性猝死中的“指令下达”机制尚不完全明确。本项目利用高分辨率多通道电生理记录系统，定位调控心率与心肌收缩力的特异性神经核团信号；探索通过低频微电流干预特定神经通路，从而达到无创/微创控制难治性心律失常与心肌休克的目标。</p >
+                <h4>目前进展</h4>
+                <p class="project-progress"><span class="progress-tag">关键突破</span>已完成脑-心信号传导图谱的初步建立，第二期智能微型电生理刺激芯片研制工作已启动。</p >
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-id-title">
+                    <div class="project-id">QM-2023-OM04</div>
+                    <h3 class="project-title">高危心血管疾病患者术后远期预后的多组学跟踪与靶向干预</h3>
+                </div>
+            </div>
+            <div class="project-meta">
+                <div class="meta-item"><strong>负责人：</strong> 许斯文 博士</div>
+                <div class="meta-item"><strong>周期：</strong> 2023.01 — 2026.12（预计）</div>
+                <div class="meta-item"><strong>研究方向：</strong> 临床医学 / 精准医疗</div>
+            </div>
+            <div class="project-body">
+                <h4>项目简介</h4>
+                <p class="project-desc">联合仁安国际医院VIP诊疗中心与综合内科，建立涵盖500例高危心血管术后患者的大型临床队列。通过定期采集患者外周血基因组、转录组及代谢组数据，绘制高危患者术后复发与急剧恶化的动态分子预警图谱，为个体化二级预防与精准用药方案提供硬核数据支持。</p >
+                <h4>目前进展</h4>
+                <p class="project-progress"><span class="progress-tag">样本收集</span>已完成首批120例患者的入组筛选与基础生物样本库建立工作。</p >
+            </div>
+        </div>
+
+        <div id="project-four-locked" class="locked-project">
+            <div class="lock-icon">🔒</div>
+            <h3>[ 权限受限 ] 绝密科研课题</h3>
+            <p>该项目涉及核心技术机密，仅限首席专家及赞助方最高权限查看</p >
+            <div class="input-group">
+                <input type="password" id="nexus-pwd" class="pwd-input" placeholder="输入六位数授权码">
+                <button class="unlock-btn" onclick="unlockNexus()">验证权限</button>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 15px; color: #555;">提示：菊花残 日期 六位数</p >
+        </div>
+
+        <div id="project-four-unlocked" class="project-card secret-project-unlocked">
+            <div class="project-header">
+                <div class="project-id-title">
+                    <div class="project-id" style="color:red">TOP SECRET: QM-2021-NEXUS-0</div>
+                    <h3 class="project-title secret-title">中枢神经全信号跨体重构与异体脑-体融合机制研究（代号：Project Nexus-0）</h3>
+                </div>
+            </div>
+            <div class="project-meta" style="background:#fff0f0">
+                <div class="meta-item"><strong>首席专家：</strong> 许斯文 博士</div>
+                <div class="meta-item"><strong>核心赞助：</strong> 鼎盛实业集团</div>
+                <div class="meta-item"><strong>方向：</strong> 意识剥离 / 换脑重构</div>
+            </div>
+            <div class="project-body">
+                <div class="secret-subheading">1. 理论基础与终极目标</div>
+                <p class="project-desc">本项目突破传统“器官移植”的局限，将人体躯体定义为“生命维持与生物能供给容器”，将大脑及脊髓中枢定义为“人格、意识与神经信号的唯一核心”。通过毫秒级神经信号桥接，实现大脑对新躯体的完整神经支配。</p >
+
+                <div class="secret-subheading">2. 核心技术攻坚</div>
+                <p class="project-desc">
+                    <strong>纳米级吻合术：</strong>利用智能纳米导电水凝胶诱导轴突跨断端融合再生。<br>
+                    <strong>免疫重塑：</strong>采用定制广谱免疫抑制剂（Q-Immune-9）建立受体对异体大脑的免疫耐受。<br>
+                    <strong>信号矫正：</strong>通过低频微电流刺激消除“体幻觉”，校准神经运动指令。
+                </p >
+
+                <div class="secret-subheading">3. 临床前进展与实验记录</div>
+                <p class="project-desc">
+                    • 灵长类实验：供体大脑存活突破72小时，脊髓信号恢复率提升至68%。<br>
+                    • <strong>现状：</strong>首期“受体躯体筛选库”建立完成。首例人体中枢神经整体移植进入最终手术准备阶段。
+                </p >
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 仁安启明实验组 REN'AN QIMING LAB. All Rights Reserved.</p >
+    </footer>
+
+    <script>
+        function unlockNexus() {
+            const pwd = document.getElementById('nexus-pwd').value;
+            if(pwd === '110314') {
+                document.getElementById('project-four-locked').style.display = 'none';
+                document.getElementById('project-four-unlocked').style.display = 'block';
+            } else {
+                alert('授权码错误！权限访问已记录。');
+            }
+        }
+    </script>
+</body>
+</html>
