@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嗷嗷嗷cc 的个人主页 - 围博</title>
+    <style>
+        :root {
+            --bg-color: #e9ecf0;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #888888;
+            --weibo-orange: #ff8200;
+            --border-color: #e0e0e0;
+            --vip-yellow: #f5a623;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 顶部围博 Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .weibo-logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--weibo-orange);
+            text-decoration: none;
+        }
+
+        /* 个人信息 Header */
+        .profile-card {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 25px 20px;
+            margin-bottom: 15px;
+        }
+
+        .profile-container {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #ffb74d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+            flex-shrink: 0;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .nickname {
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .v-tag {
+            background-color: var(--vip-yellow);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+        .cert-info {
+            font-size: 0.85rem;
+            color: #d97706;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+            padding: 0 15px;
+        }
+
+        /* 博文卡片 */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ffb74d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .post-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-author-name {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .post-meta {
+            font-size: 0.78rem;
+            color: var(--text-sub);
+        }
+
+        .post-content {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            text-align: justify;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        .post-img {
+            max-width: 100%;
+            max-height: 350px;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 18px 15px;
+            }
+            .post-card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部 Header -->
+    <header>
+        <div class="header-container">
+            <a href=" " class="weibo-logo">围博</a >
+        </div>
+    </header>
+
+    <!-- 个人资料 -->
+    <div class="profile-card">
+        <div class="profile-container">
+            <div class="avatar">cc</div>
+            <div class="profile-info">
+                <div class="nickname">
+                    嗷嗷嗷cc <span class="v-tag">V</span>
+                </div>
+                <div class="cert-info">个人认证： 鼎盛实业集团高管 秦傲城</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 围博列表 -->
+    <main>
+        <!-- 2023-09-01 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2023-09-01 16:30 来自 iPhone 14 Pro Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                今天带着我家小同学去贝赛思报道啦！小人儿穿制服真的太萌了！希望宝贝在幼儿园乖乖听话，认识新朋友。今天姐姐忙着开董事会没能来，不过特地让司机送了超大束气球和全套小熊文具，爱死姐啦！
+            </div>
+            < img src="children.jpg" alt="图片" class="post-img">
+        </div>
+
+        <!-- 2023-05-20 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2023-05-20 22:15 来自 iPhone 14 Pro Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                520快乐！老公送了宝格丽，不过我最爱的还是姐姐送的这个定制款爱马仕！今晚跟着姐姐参加了慈善晚宴，一身黑西装简直帅爆，我在底下跟个小迷妹一样狂拍照。姐姐说我最近在新型材料事业部表现有进步，奖励我下周末去京都度假，耶！
+            </div>
+        </div>
+
+        <!-- 2023-01-22 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2023-01-22 10:00 来自 iPhone 14 Pro Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                新年大吉！焉焉三岁啦，越来越会说甜言蜜语了，早上抱着我说“妈妈最漂亮”。带着女儿和老公回大宅给姐姐拜年，姐姐包了个超大的红封！
+            </div>
+        </div>
+
+        <!-- 2022-07-18 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2022-07-18 15:40 来自 iPhone 13 Pro Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                杭州这天气真的要热炸了啦！下午带焉焉去打卡了新开的贵妇冰淇淋，一勺下去直接快乐飞起！顺便去万象城把秋季新品包包全给包圆了。
+            </div>
+        </div>
+
+        <!-- 2022-04-18 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2022-04-18 23:05 来自 iPhone 13 Pro Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                焉焉最近迷上了抱抱，两岁的小胖墩沉得要死。老公去出差了，晚上带焉焉去姐姐家睡。姐姐虽然平时工作超级忙、看起来冷冰冰的，但看到焉焉就会笑，还会抱着她讲故事。
+            </div>
+        </div>
+
+        <!-- 2022-02-14 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2022-02-14 20:30 来自 iPhone 13 Pro Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                情人节打卡！老公定了我最想吃的那家米其林三星法餐，黑松露和鱼子酱管够。
+            </div>
+        </div>
+
+        <!-- 2021-12-25 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2021-12-25 21:00 来自 iPhone 13 Pro</span>
+                </div>
+            </div>
+            <div class="post-content">
+                圣诞快乐，来自一个在瑞士滑雪把胳膊摔伤的可怜人儿的祝福。
+            </div>
+        </div>
+
+        <!-- 2021-05-21 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2021-05-21 21:01 来自 iPhone 13 Pro</span>
+                </div>
+            </div>
+            <div class="post-content">
+                威信不知道抽啥风突然坏啦，有事要联系我的亲朋好友们，指路邮箱 acqinnn@127.com
+            </div>
+        </div>
+
+        <!-- 2020-08-05 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2020-08-05 17:15 来自 iPhone 11 Pro</span>
+                </div>
+            </div>
+            <div class="post-content">
+                产后恢复第一阶段大成功！终于可以出来和闺蜜们做 Spa 喝下午茶了，憋死我了呜呜呜！今天这个伯爵红茶戚风蛋糕真的绝了，一口气吃了两块，下午又去逛街买了一堆宝宝的软萌小衣服，当妈妈后真的看什么都想买下！
+            </div>
+        </div>
+
+        <!-- 2020-06-28 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2020-06-28 11:18 来自 iPhone 11 Pro</span>
+                </div>
+            </div>
+            <div class="post-content">
+                顺产得利！母女平安！七斤六两的小妞降生啦！欢迎来到这个世界，我的焉焉宝贝。<br>
+                疼死老娘了，不过看到宝宝那一刻真的觉得一切都值得。老公在产房外面直接哭成狗，妈妈和哥哥也送来了好多好多礼物。
+            </div>
+        </div>
+
+        <!-- 2019-05-20 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2019-05-20 18:08 来自 iPhone 11 Pro</span>
+                </div>
+            </div>
+            <div class="post-content">
+                今天，我嫁给了爱情！<br>
+                感谢妈妈为我举办的这场梦幻婚礼，妈妈牵着我的手交给老公，那一刻我甚至不想嫁了。感谢所有来祝福我们的亲朋好友！从今天起，开启人生新篇章啦！
+            </div>
+        </div>
+
+        <!-- 2019-05-12 -->
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-avatar">cc</div>
+                <div class="post-author-info">
+                    <span class="post-author-name">嗷嗷嗷cc</span>
+                    <span class="post-meta">2019-05-12 21:50 来自 iPhone XS Max</span>
+                </div>
+            </div>
+            <div class="post-content">
+                备婚假第3天！和老公飞到圣托里尼拍海景婚纱照啦。希腊的日落真的太浪漫太治愈了，白天试了十几套婚纱累到瘫，晚上吃到了超地道的海鲜大餐！
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 围博 个人主页 版权所有</p >
+    </footer>
+
+</body>
+</html>
