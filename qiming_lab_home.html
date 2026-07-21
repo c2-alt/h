@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仁安启明实验组 - 官方网站</title>
+    <style>
+        :root {
+            --primary-navy: #0a192f;
+            --accent-blue: #0066cc;
+            --light-blue: #e6f0fa;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+        }
+
+        /* 顶部 Header & 导航 */
+        header {
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .lab-logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-sub {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            font-weight: normal;
+            display: block;
+        }
+
+        /* 导航菜单 */
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--accent-blue);
+            color: #ffffff;
+        }
+
+        /* Hero 视觉横幅 */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-blue);
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.98rem;
+            color: #93c5fd;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* 主体容器 */
+        main {
+            max-width: 1050px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            color: var(--primary-navy);
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 12px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-text {
+            font-size: 0.96rem;
+            color: #334155;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 研究方向网格 */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .research-item {
+            background-color: var(--light-blue);
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .research-title {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--primary-navy);
+            margin-bottom: 8px;
+        }
+
+        .research-desc {
+            font-size: 0.88rem;
+            color: #334155;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* 硬件设施列表 */
+        .facility-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .facility-item {
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .facility-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .facility-name {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 0.98rem;
+            margin-bottom: 4px;
+        }
+
+        .facility-desc {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-navy);
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.82rem;
+            margin-top: 50px;
+            border-top: 1px solid #1e293b;
+        }
+
+        /* 手机端适配 */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .hero-title {
+                font-size: 1.4rem;
+            }
+            .section-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航栏 -->
+    <header>
+        <div class="nav-container">
+            <a href=" " class="lab-logo">
+                🧬 仁安启明实验组
+                <span class="logo-sub">REN'AN QIMING LAB · 心肌细胞再生与前沿医学联合实验室</span>
+            </a >
+            <nav>
+                <a href="qiming_lab_home.html" class="nav-link active">首页</a >
+                <a href="qiming_projects.html" class="nav-link">科研项目</a >
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero 视觉 Banner -->
+    <div class="hero-banner">
+        <div class="hero-title">用科技延续生命华章 ｜ 用严谨守护人类健康</div>
+        <div class="hero-subtitle">专注于终末期心肌损伤修复与高阶神经-心血管信号协同干预的代际技术攻坚</div>
+    </div>
+
+    <main>
+        <!-- 组建背景与使命 -->
+        <div class="section-card">
+            <div class="section-title">组建背景与使命 Background &amp; Mission</div>
+            <p class="section-text">
+                “仁安启明实验组”（仁安心肌细胞再生与前沿医学联合实验室）成立于2020年，由我国著名心血管专家陈启明教授倡导并创立。2022年，为继承与发扬陈启明教授的前沿学术思想，实验组正式由华东地区优秀中青年心血管专家许斯文博士接任首席专家及课题组总负责人。
+            </p >
+            <p class="section-text">
+                本实验组依托仁安国际医院雄厚的临床医疗资源与国际顶尖的生物医学硬件，致力于打破传统心血管疾病诊疗的瓶颈，专注于“终末期心肌损伤修复”与“高阶神经-心血管信号协同干预”的代际技术攻坚，打造华东地区乃至全国最具影响力的产学研一体化前沿医学研究基地。
+            </p >
+        </div>
+
+        <!-- 核心研究方向 -->
+        <div class="section-card">
+            <div class="section-title">核心研究方向 Research Directions</div>
+            <div class="research-grid">
+                <div class="research-item">
+                    <div class="research-title">1. 心肌细胞再生与微环境重构</div>
+                    <div class="research-desc">
+                        针对急性心肌梗死及终末期心衰造成的心肌细胞不可逆坏死问题，通过前沿生物材料与细胞因子诱导技术，探索心肌微环境的精确重构，促进坏死心肌区域的内源性修复与功能重塑。
+                    </div>
+                </div>
+
+                <div class="research-item">
+                    <div class="research-title">2. 高阶中枢神经与心血管协同调控</div>
+                    <div class="research-desc">
+                        深入探究中枢神经系统在心血管自主神经调控中的“底层代码”。通过高精尖的神经电信号干预与分子信号传导技术，研究大脑高阶中枢对受损心血管系统的代偿与修复效应。
+                    </div>
+                </div>
+
+                <div class="research-item">
+                    <div class="research-title">3. 智能高精尖生物医疗器械研发</div>
+                    <div class="research-desc">
+                        与多家顶尖产业资本及生物工程团队联合，开发适用于微创介入手术的智能神经-心肌电极与微型生物芯片，推动临床诊疗技术的智能化与微创化。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 硬件设施与科研环境 -->
+        <div class="section-card">
+            <div class="section-title">硬件设施与科研环境 Facilities &amp; Environment</div>
+            <p class="section-text" style="margin-bottom: 20px;">
+                仁安启明实验组坐落于仁安国际医院科研大楼 8-10层，拥有独立使用的 3000平方米高标准实验室：
+            </p >
+            <div class="facility-list">
+                <div class="facility-item">
+                    <div class="facility-name">🔬 百级无菌细胞工程中心</div>
+                    <div class="facility-desc">配备全球顶尖的超高速流式细胞分析仪、多模态活细胞成像系统及自动化细胞培养工作站。</div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-name">⚡ 神经-心肌电信号微观解析室</div>
+                    <div class="facility-desc">拥有高分辨率电生理记录仪与三维立体定向显微操作平台，可实现微米级细胞信号的精准捕捉。</div>
+                </div>
+                <div class="facility-item">
+                    <div class="facility-name">🐁 屏障级动物实验中心</div>
+                    <div class="facility-desc">提供符合国际AAALAC认证的标准化实验动物饲养与复杂手术建模环境。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 合作与展望 -->
+        <div class="section-card">
+            <div class="section-title">合作与展望 Cooperation &amp; Outlook</div>
+            <p class="section-text">
+                实验组始终坚持“开放合作、科技向善”的理念，与国内外多家顶级医学院校建立了深度的学术交流机制，并获得了社会产业资本的长期专项研发赞助。
+            </p >
+            <p class="section-text">
+                未来，仁安启明实验组将继续以许斯文主任为核心，秉承“用科技延续生命华章，用严谨守护人类健康”的初心，在生命科学的前沿禁区不断探索，让更多终末期心脑血管疾病患者重获新生。
+            </p >
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 仁安启明实验组 REN'AN QIMING LAB. All Rights Reserved.</p >
+        <p style="margin-top: 5px; opacity: 0.7;">地址：杭州市西湖区灵荫路190号仁安国际医院科研大楼8-10层</p >
+    </footer>
+
+</body>
+</html>
