@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知公告 - 仁安国际医院</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #0066cc;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #666666;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* 顶部 Logo 与 导航栏 */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: normal;
+            display: block;
+        }
+
+        /* 导航菜单 */
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .page-header {
+            background: var(--card-bg);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .page-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* 公告列表卡片 */
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .news-title {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .news-meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-content {
+            font-size: 0.95rem;
+            color: #4a5568;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .news-content p {
+            margin-bottom: 12px;
+        }
+
+        .news-content ol, .news-content ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .news-content li {
+            margin-bottom: 6px;
+        }
+
+        .news-footer {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        /* 手机端适配调整 */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 8px;
+            }
+            .nav-link {
+                padding: 5px 8px;
+                font-size: 0.85rem;
+            }
+            .news-card {
+                padding: 20px 18px;
+            }
+            .news-meta {
+                gap: 8px;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="nav-container">
+            <a href=" " class="logo">
+                🏥 仁安国际医院
+                <span class="logo-sub">REN'AN INTERNATIONAL HOSPITAL</span>
+            </a >
+            <nav>
+                <a href="doctors.html" class="nav-link">医资力量</a >
+                <a href="news.html" class="nav-link active">通知公告</a >
+                <a href="memorial.html" class="nav-link">追思献花</a >
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <div class="page-title">通知公告 ANNOUNCEMENTS</div>
+            <div class="page-desc">发布医院最新诊疗动态、管理公告及公共服务信息</div>
+        </div>
+
+        <!-- 公告 1 -->
+        <div class="news-card">
+            <div class="news-title">关于医院核磁共振（MRI-3.0T）设备维护及部分时段暂停预约的通知</div>
+            <div class="news-meta">
+                <span class="news-meta-item">📅 发布时间：2023年03月15日</span>
+                <span class="news-meta-item">📄 文号：仁安医技字〔2023〕第014号</span>
+                <span class="news-meta-item">🏢 发布部门：仁安国际医院医学影像科 &amp; 设施设备部</span>
+            </div>
+            <div class="news-content">
+                <p>尊敬的患者及家属：</p >
+                <p>为持续提升临床诊断精准度，保障医疗设备的高效安全运行，我院医学影像中心将于近期对1号楼地下一层 3.0T 超高场核磁共振（MRI）系统进行例行深度保养、系统软件升级与磁场校准。</p >
+                <p>现将相关调整事项通知如下：</p >
+                <ol>
+                    <li><strong>暂停服务时间：</strong> 2023年03月18日（星期六）08:00 至 2023年03月19日（星期日）18:00。</li>
+                    <li><strong>诊疗调整说明：</strong> 维护期间，急诊患者及住院部危重症患者的核磁共振检查将统一协调至2号楼备用 MRI 检查室进行；门诊常规 MRI 预约将顺延至03月20日（星期一）恢复。</li>
+                    <li><strong>已预约患者处理：</strong> 凡已预约该时段检查的门诊患者，我院客服中心将通过短信或电话联系您办理改期或退费手续。</li>
+                </ol>
+                <p>由此给您带来的不便，敬请谅解。感谢您的理解与配合！</p >
+            </div>
+            <div class="news-footer">
+                仁安国际医院<br>
+                2023年03月15日
+            </div>
+        </div>
+
+        <!-- 公告 2 -->
+        <div class="news-card">
+            <div class="news-title">关于医院新一届管理层任职及中青年专家团队全面上岗的公告</div>
+            <div class="news-meta">
+                <span class="news-meta-item">📅 发布时间：2021年07月22日</span>
+                <span class="news-meta-item">📄 文号：仁安院办字〔2021〕第092号</span>
+                <span class="news-meta-item">🏢 发布部门：仁安国际医院董事会 &amp; 党委办公室</span>
+            </div>
+            <div class="news-content">
+                <p>各位员工、广大患者及社会各界人士：</p >
+                <p>在经历了重大突发变故与深切悼念后，为确保医院各项诊疗工作的高效运转，保障广大患者的就医权益，经仁安国际医院董事会紧急会议审议决定，正式完成医院新一届领导班子的组建与中青年骨干医资团队的整体平稳过渡。</p >
+                <p>现将新一届管理层及各核心科室负责人上岗任命公告如下：</p >
+                <ol>
+                    <li>任命 <strong>陆长风</strong> 同志 担任仁安国际医院院长，全面主持医院日常运行与医疗管理工作；</li>
+                    <li>任命 <strong>沈清源</strong> 同志 担任仁安国际医院副院长，分管科研课题、学术交流与国际医疗合作；</li>
+                    <li>任命 <strong>许斯文</strong> 同志 担任心血管内科主任，主持心内科临床诊疗与前沿科研项目；</li>
+                    <li>任命 <strong>戴维、秦克强、赵子墨</strong> 等同志 分别担任神经外科、骨科、普通外科等各核心科室主任（具体名录见“医资力量”板块）。</li>
+                </ol>
+                <p>新一届领导班子与专家团队均具备国内外顶尖医学院校博士/硕士学位及丰富的临床硬核实力。本次人事交接已于2021年07月20日全部完成，全院各门诊、急诊、住院部及手术室均已恢复正常且高效的接诊状态。</p >
+                <p>新起点，新征程。仁安国际医院全体新上岗专家及医护人员，将继承前人的医德遗志，以更充沛的精力、更前沿的技术，继续为广大患者提供最卓越的医疗服务。</p >
+                <p>特此公告。</p >
+            </div>
+            <div class="news-footer">
+                仁安国际医院董事会<br>
+                2021年07月22日
+            </div>
+        </div>
+
+        <!-- 公告 3 -->
+        <div class="news-card">
+            <div class="news-title">关于医院原领导班子及部分老专家不幸遇难的沉痛讣告</div>
+            <div class="news-meta">
+                <span class="news-meta-item">📅 发布时间：2021年07月04日</span>
+                <span class="news-meta-item">📄 文号：仁安院办字〔2021〕第087号</span>
+                <span class="news-meta-item">🏢 发布部门：仁安国际医院院长办公室</span>
+            </div>
+            <div class="news-content">
+                <p>各位员工、广大患者及社会各界人士：</p >
+                <p>我们怀着无比沉痛的心情通告：2021年07月03日傍晚，我院原院长张雍和同志、原副院长陈启明同志及各学科老一辈带头人一行，在前往参加华东地区学术交流峰会途中，不幸遭遇严重交通意外。经全力抢救无效，全体随行专家不幸集体罹难。</p >
+                <p>张雍和前院长及陈启明前副院长等诸位专家，是我院的奠基人与学术脊梁。他们数十年来悬壶济世、呕心沥血，为仁安国际医院的建设与发展作出了不可磨灭的贡献。他们的突然离世，是我院乃至华东地区医疗卫生事业的重大损失。</p >
+                <p>目前，医院已成立专项善后处理小组，全力配合有关部门妥善处理善后事宜，并对我院逝世专家的家属表达最深切的慰问。为表达对逝者的永恒追思，医院官网即日起正式上线“追思献花”专区，供全院职工及广大患者在线表达哀思。</p >
+                <p>特此通告。</p >
+            </div>
+            <div class="news-footer">
+                仁安国际医院<br>
+                2021年07月04日
+            </div>
+        </div>
+
+        <!-- 公告 4 -->
+        <div class="news-card">
+            <div class="news-title">关于举办“关爱心脑血管·春季健康公益义诊”活动的通知</div>
+            <div class="news-meta">
+                <span class="news-meta-item">
+                  📅 发布时间：2021年04月08日</span>
+                <span class="news-meta-item">📄 文号：仁安门发字〔2021〕第022号</span>
+                <span class="news-meta-item">🏢 发布部门：仁安国际医院门诊部 &amp; 社会服务部</span>
+            </div>
+            <div class="news-content">
+                <p>尊敬的市民朋友：</p >
+                <p>春季气温多变，是心脑血管疾病的高发季节。为普及心脑血管健康知识，提升广大市民对早期病症的预防与筛查意识，仁安国际医院将于本月中旬举办“关爱心律·守护大脑”大型公益义诊及科普讲座活动。</p >
+                <p>活动具体安排如下：</p >
+                <ul>
+                    <li><strong>活动时间：</strong> 2021年04月15日（星期四）09:00 — 12:00</li>
+                    <li><strong>活动地点：</strong> 仁安国际医院1号楼门诊大厅一楼</li>
+                    <li><strong>义诊范围：</strong> 心血管内科、神经外科、综合内科专家联合坐诊（提供免费血压测量、心电图初筛及专家一对一健康咨询）。</li>
+                    <li><strong>科普讲座：</strong> 10:30 由我院心内科骨干医师主讲《高血压与冠心病的日常预防与早期信号识别》（地点：门诊三楼报告厅）。</li>
+                    <li><strong>参与方式：</strong> 现场免费参与，因场地有限，健康讲座需提前通过我院微信公众号或官网“预约挂号”页面进行名额预定（限额100人）。</li>
+                </ul>
+                <p>欢迎广大市民朋友携家人前来咨询就诊。</p >
+            </div>
+            <div class="news-footer">
+                仁安国际医院<br>
+                2021年04月08日
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 仁安国际医院 REN'AN INTERNATIONAL HOSPITAL. All Rights Reserved.</p >
+        <p style="margin-top: 5px; opacity: 0.7;">地址：杭州市西湖区灵荫路190号 ｜ 电话：0571-8888XXXX</p >
+    </footer>
+
+</body>
+</html>
+
