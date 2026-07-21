@@ -194,7 +194,7 @@
 
         /* 浏览器界面样式 */
         .browser-header {
-            height: 45px;
+            height: 50px;
             background-color: #f1f1f1;
             border-bottom: 1px solid #ccc;
             display: flex;
@@ -203,54 +203,60 @@
             gap: 8px;
         }
 
-        .browser-input-wrap {
+        .search-form {
             flex: 1;
-            height: 28px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 14px;
-            padding: 0 10px;
             display: flex;
             align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 18px;
+            padding: 0 8px 0 12px;
+            height: 32px;
         }
 
-        .url-input {
-            width: 100%;
+        .search-input-field {
+            flex: 1;
             border: none;
             outline: none;
-            font-size: 12px;
+            font-size: 13px;
             color: #333;
             background: transparent;
         }
 
-        .search-go-btn {
+        .search-btn {
             background: #2b7cff;
-            color: white;
+            color: #fff;
             border: none;
-            border-radius: 4px;
-            padding: 3px 8px;
-            font-size: 11px;
+            border-radius: 12px;
+            padding: 4px 10px;
+            font-size: 12px;
             cursor: pointer;
         }
 
         .browser-body {
             flex: 1;
-            padding: 0;
+            padding: 20px;
             background-color: #fff;
             color: #666;
             font-size: 13px;
-            overflow-y: auto;
-            position: relative;
         }
 
-        .browser-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .search-tip {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f8fafc;
+            border-left: 3px solid #2b7cff;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.6;
         }
 
-        .browser-home {
-            padding: 20px;
+        #search-error {
+            color: #d9534f;
+            margin-top: 12px;
+            font-size: 12px;
+            display: none;
         }
     </style>
 </head>
@@ -274,6 +280,7 @@
             </div>
         </div>
 
+        <!-- 威信窗口 -->
         <div id="weixin-app" class="app-window">
             <div class="chat-header">
                 <span class="back-btn" onclick="closeApp('weixin-app')">❮</span>
@@ -287,7 +294,7 @@
                         <div class="msg-bubble">
                             婚礼的时间和地点都定好了，这是我们的电子请柬，到时候你一定要来呀！
                             <div class="invitation-card">
-                                💌 <a href=invitation.html" class="invitation-link">【闻粤与许斯文的结婚请柬】</a >
+                                💌 <a href="invitation.html" class="invitation-link">【闻粤与许斯文的结婚请柬】</a >
                             </div>
                         </div>
                     </div>
@@ -295,19 +302,22 @@
             </div>
         </div>
 
+        <!-- 浏览器窗口 -->
         <div id="browser-app" class="app-window">
             <div class="browser-header">
                 <span class="back-btn" onclick="closeApp('browser-app')">❮</span>
-                <div class="browser-input-wrap">
-                    <input type="text" id="browser-url-input" class="url-input" value="" placeholder="输入搜索关键词或网址">
+                <div class="search-form">
+                    <input type="text" id="browser-search-input" class="search-input-field" placeholder="请输入关键词搜索..." onkeydown="if(event.key==='Enter') performSearch()">
+                    <button class="search-btn" onclick="performSearch()">搜索</button>
                 </div>
-                <button class="search-go-btn" onclick="performSearch()">访问</button>
             </div>
-            <div class="browser-body" id="browser-content-area">
-                <div class="browser-home" id="browser-home-page">
-                    <p>浏览器准备就绪。</p >
-                    <p style="margin-top: 10px; color: #999;">输入关键词或网址</p >
+            <div class="browser-body">
+                <h3>搜索引擎</h3>
+                <div class="search-tip">
+                    🔍 <strong>搜索提示：</strong><br>
+                    在上方搜索框输入人物姓名、组织机构或邮箱地址，点击“搜索”按钮查看线索。
                 </div>
+                <div id="search-error">未找到相关搜索结果，请检查关键词是否正确。</div>
             </div>
         </div>
     </div>
@@ -323,51 +333,52 @@
             document.getElementById(appId).style.display = 'none';
         }
 
-        // 浏览器核心跳转/搜索逻辑，把关键词或网址连接到各个对应页面
+        // 完整10个关键词跳转逻辑
         function performSearch() {
-            const query = document.getElementById('browser-url-input').value.trim();
-            const contentArea = document.getElementById('browser-content-area');
+            const query = document.getElementById('browser-search-input').value.trim();
+            const errorDiv = document.getElementById('search-error');
+            
+            errorDiv.style.display = 'none';
 
-            // 映射表：支持玩家输入的各种搜索词或直接文件名
-            let targetPage = '';
+            // 转为小写以增强匹配容错率（如邮箱大小写）
+            const lowerQuery = query.toLowerCase();
 
-            if (query.includes('秦谷云') && query.includes('逝世')) {
-                targetPage = 'news_qincuyun.html';
-            } else if (query === '秦傲城' || query.includes('嗷嗷嗷cc')) {
-                targetPage = 'search_result8.html';
-            } else if (query === 'acqinnn@127.com') {
-                targetPage = 'search_result9.html';
-            } else if (query === 'dingshengqgy@127.com') {
-                targetPage = 'search_result10.html';
-            } else if (query.endsWith('.html')) {
-                targetPage = query; // 支持直接输入文件名跳转
-            } else {
-                // 默认模糊匹配处理
-                if (query.includes('秦傲城')) {
-                    targetPage = 'search_result8.html';
-                } else if (query.includes('acqinnn')) {
-                    targetPage = 'search_result9.html';
-                } else if (query.includes('dingshengqgy')) {
-                    targetPage = 'search_result10.html';
-                } else if (query.includes('秦谷云')) {
-                    targetPage = 'news_qincuyun.html';
-                } else {
-                    // 如果都不匹配，展示一个简易的搜索无结果或默认引导页
-                    contentArea.innerHTML = `<div style="padding:20px;"><h3>没有找到与 "${query}" 相关的直接结果</h3><p style="margin-top:10px; color:#666;">试着搜索：秦谷云、秦傲城、acqinnn@127.com、dingshengqgy@127.com</p ></div>`;
-                    return;
-                }
+            switch (lowerQuery) {
+                case '仁安国际医院':
+                    window.location.href = 'search_result1.html';
+                    break;
+                case '许斯文':
+                    window.location.href = 'search_result2.html';
+                    break;
+                case 'xsw不败类':
+                    window.location.href = 'search_result3.html';
+                    break;
+                case '陈启明':
+                    window.location.href = 'search_result4.html';
+                    break;
+                case '仁安启明实验组':
+                    window.location.href = 'search_result6.html';
+                    break;
+                case '秦谷云':
+                    window.location.href = 'search_result7.html';
+                    break;
+                case '秦傲城':
+                    window.location.href = 'search_result8.html';
+                    break;
+                case 'acqinnn@127.com':
+                    window.location.href = 'search_result9.html';
+                    break;
+                case 'dingshengqgy@127.com':
+                    window.location.href = 'search_result10.html';
+                    break;
+                case '':
+                    alert('请输入搜索关键词！');
+                    break;
+                default:
+                    errorDiv.style.display = 'block';
+                    break;
             }
-
-            // 用内嵌 iframe 载入对应的各功能网页
-            contentArea.innerHTML = `<iframe src="${targetPage}" class="browser-iframe"></iframe>`;
         }
-
-        // 监听回车键直接触发搜索
-        document.getElementById('browser-url-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
     </script>
 </body>
 </html>
