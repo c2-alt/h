@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻报道 - 杭州绕城高速发生严重车祸 29岁女子闻某抢救无效身亡</title>
+    <style>
+        :root {
+            --primary-color: #333333;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+        }
+
+        /* 报纸风格 Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 15px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .paper-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .paper-sub {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 35px 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .article-title {
+            font-size: 1.45rem;
+            color: #1a1a1a;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .article-body {
+            font-size: 0.98rem;
+            color: #2c3e50;
+            text-align: justify;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-indent: 2em;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 600px) {
+            .article-card {
+                padding: 20px 18px;
+            }
+            .article-title {
+                font-size: 1.25rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部 Header -->
+    <header>
+        <div class="header-container">
+            <span class="paper-logo">《新杭报》数字版</span>
+            <span class="paper-sub">社会新闻版（第A06版）</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-card">
+            <!-- 标题 -->
+            <div class="article-title">杭州绕城高速发生严重车祸 29岁女子闻某抢救无效身亡 警方已介入调查</div>
+
+            <!-- 元信息 -->
+            <div class="article-meta">
+                <span>📅 刊发时间：2023年10月02日 19:00</span>
+                <span>📰 来源：《新杭报》数字版</span>
+                <span>✍️ 记者：许儒</span>
+            </div>
+
+            <!-- 正文 -->
+            <div class="article-body">
+                <p><strong>本报讯（记者 许儒）</strong> 10月1日晚20时40分许，杭州绕城高速三墩互通附近路段发生一起严重交通事故。一辆由南向北行驶的白色轿车在行驶过程中突然失控冲出护栏，随后翻下路基并起火燃烧。车辆驾驶员、29岁女子闻某经送往仁安国际医院全力抢救无效，于今日凌晨不幸身亡。</p >
+                <p>据交警部门初步调查，事故发生时现场伴有局部阵雨，地面湿滑，涉事车辆存在单车失控侧翻的情况。</p >
+                <p>目前，杭州市公安局高速公路交通警察支队已对事故原因展开进一步调查，涉事车辆的机械状况与事故发生时的具体细节正在严密排查中。</p >
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 《新杭报》社 版权所有 ｜ 未经许可不得转载</p >
+    </footer>
+
+</body>
+</html>
