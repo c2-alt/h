@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼎盛实业集团 - 官方网站</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --bg-light: #f7fafc;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 主体布局 */
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 35px 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 15px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-text {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        /* 核心业务网格 */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .business-card {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 0 6px 6px 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .business-card h3 {
+            font-size: 17px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        /* 管理层展示 */
+        .exec-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .exec-card {
+            background: #f8fafc;
+            padding: 22px 25px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .exec-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* 企业文化与社会责任 */
+        .culture-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .culture-item {
+            background-color: #f8fafc;
+            padding: 18px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .culture-item strong {
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border-color);
+            background: #ffffff;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">鼎盛实业集团</div>
+            <ul class="nav-links">
+                <li><a href=" ">集团概况</a ></li>
+                <li><a href="#business">核心业务分类</a ></li>
+                <li><a href="#management">管理层介绍</a ></li>
+                <li><a href="#culture">企业文化与社会责任</a ></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- 集团概况 -->
+        <section id="about">
+            <h2>集团概况</h2>
+            <p>鼎盛实业集团创办于2002年，总部位于华东地区，是一家集高品质建筑材料研发、新型复合材料生产、基础设施工程配套及实业投资于一体的大型综合性实业集团。</p >
+            <p>二十年来，鼎盛实业始终秉承“立基如石，造福长远”的企业宗旨，依托雄厚的资金实力与先进的自动化生产线，产品广泛应用于国家级重点工程、超高层地标建筑及高端商业地产项目。公司连续多年荣获“全国建材行业百强企业”及“绿色环保示范单位”称号。</p >
+        </section>
+
+        <!-- 核心业务分类 -->
+        <section id="business">
+            <h2>核心业务分类</h2>
+            <p class="intro-text">鼎盛实业深耕建材产业链，旗下业务涵盖四大核心板块：</p >
+            <div class="business-grid">
+                <div class="business-card">
+                    <h3>新型结构工程材料</h3>
+                    <p>主营高强度高性能混凝土、预应力构件及大型钢结构支架，为大型桥梁、隧道及超高层建筑提供稳固基石。</p >
+                </div>
+                <div class="business-card">
+                    <h3>节能环保建筑涂料与防水材料</h3>
+                    <p>专注于无毒无害、高耐久度的绿色建筑外墙涂料、特种防水卷材与高分子防腐涂料研发。</p >
+                </div>
+                <div class="business-card">
+                    <h3>高端特种玻璃与新型复合建材</h3>
+                    <p>提供防火结构玻璃、光伏建筑一体化（BIPV）玻璃及轻质高强复合墙体材料。</p >
+                </div>
+                <div class="business-card">
+                    <h3>原材料供应链与物流调度</h3>
+                    <p>拥有自营的大型物流中转基地与采石矿业基地，确保全国范围内重点工程的大宗建材稳定供应。</p >
+                </div>
+            </div>
+        </section>
+
+        <!-- 管理层介绍 -->
+        <section id="management">
+            <h2>管理层介绍</h2>
+            <p class="intro-text">鼎盛实业汇聚了一支具有深厚行业背景、卓越管理视野与稳健经营风格的领军团队：</p >
+            <div class="exec-list">
+                <div class="exec-card">
+                    <div class="exec-name">秦昭然（集团执行总裁 / 董事）</div>
+                    <p>毕业于中国人民大学财政金融学院，系集团创始人秦谷云女士的侄女。自全面接手集团事务以来，以极其铁腕的商业手腕主持了多项重大并购与供应链升级项目，表现出远超同龄人的大局观与统治力。目前全面主导集团日常经营管理、资金统筹与战略布局。</p >
+                </div>
+                <div class="exec-card">
+                    <div class="exec-name">秦傲城（新型材料事业部总经理）</div>
+                    <p>毕业于上海财经大学，系集团创始人秦谷云女士之女。目前作为集团高管梯队成员，深入一线主持新型复合建材事业部的业务拓展与技术转化。在其带领下，该部门业绩增长迅速，展现出出色的市场开拓能力。</p >
+                </div>
+                <div class="exec-card">
+                    <div class="exec-name">赵振邦（集团首席技术官）</div>
+                    <p>毕业于清华大学无机非金属材料学博士，高级工程师。长期主持鼎盛实业的技术研发与质量控制体系，主导过多项国家级新型环保建材课题研发，拥有多项建材发明专利。</p >
+                </div>
+            </div>
+        </section>
+
+        <!-- 企业文化与社会责任 -->
+        <section id="culture">
+            <h2>企业文化与社会责任</h2>
+            <div class="culture-list">
+                <div class="culture-item">
+                    <p><strong>企业精神：</strong> 坚韧、务实、创新、共赢。</p >
+                </div>
+                <div class="culture-item">
+                    <p><strong>质量方针：</strong> 毫米级别的严谨，百年大计的承诺。</p >
+                </div>
+                <div class="culture-item">
+                    <p><strong>公益与社会责任：</strong> 鼎盛实业积极履行企业社会责任，设立“鼎盛助学公益基金”，长期资助偏远地区学校建设与基础设施改善；同时大力推行绿色低碳生产工艺，致力于打造零碳示范工厂。</p >
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 鼎盛实业集团 版权所有
+    </footer>
+
+</body>
+</html>
