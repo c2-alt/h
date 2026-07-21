@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索引擎 - 搜索结果</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #222222;
+            --text-sub: #70757a;
+            --link-color: #1a0dab;
+            --border-color: #dfe1e5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            padding: 15px;
+        }
+
+        /* 搜索框顶部栏 */
+        .search-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 8px 16px;
+            box-shadow: 0 1px 6px rgba(32,33,36,0.1);
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .result-stats {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+        }
+
+        /* 搜索结果列表 */
+        .result-item {
+            margin-bottom: 24px;
+        }
+
+        .result-site {
+            font-size: 12px;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .tag {
+            background-color: #f1f3f4;
+            color: #3c4043;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 3px;
+            margin-left: 6px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            color: var(--link-color);
+            text-decoration: none;
+            line-height: 1.3;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .result-snippet {
+            font-size: 13px;
+            color: #4d5156;
+            line-height: 1.5;
+        }
+
+        .snippet-highlight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部搜索栏 -->
+    <div class="search-header">
+        <div class="search-box">
+            <input type="text" class="search-input" value="许斯文" readonly>
+        </div>
+    </div>
+
+    <div class="result-stats">找到约 2 个相关结果 （用时 0.03 秒）</div>
+
+    <!-- 词条 1：清华论坛 -->
+    <div class="result-item">
+        <div class="result-site">
+            https://bbs.tsinghua.edu.cn/forum/viewthread?tid=884210 <span class="tag">清华校友论坛</span>
+        </div>
+        <a href="tsinghua_bbs.html" class="result-title">水木清华</a >
+        </div>
+    </div>
+
+    <!-- 词条 2：医学采访 -->
+    <div class="result-item">
+        <div class="result-site">
+            https://www.medfrontiers-weekly.com/interview/202209 <span class="tag">人物专访</span>
+        </div>
+        <a href="interview_xuswi.html" class="result-title">《医学前沿 Weekly》专访：破局者！采访医学新锐仁安国际医院心内科主任许斯文</a >
+        <div class="result-snippet">
+            《医学前沿 Weekly》独家对话<span class="snippet-highlight">许斯文</span>主任：“医学的本质是与时间的博弈。”从冠心病复杂介入治疗到终末期心衰拯救，这位年轻有为的心血管专家向我们讲述了他的医者初心与前沿科研突破……
+        </div>
+    </div>
+
+</body>
+</html>
