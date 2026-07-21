@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xsw不败类的博客</title>
+    <style>
+        :root {
+            --bg-color: #e9ecf0;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #888888;
+            --weibo-orange: #ff8200;
+            --border-color: #e0e0e0;
+            --lock-bg: #fff9f0;
+            --lock-border: #f2d2a9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 顶部博客 Header */
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 25px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--weibo-orange);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .blog-info {
+            flex: 1;
+        }
+
+        .blog-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .blog-desc {
+            font-size: 0.82rem;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* 博文卡片 */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+
+        .post-meta {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .private-tag {
+            background-color: #ff4d4f;
+            color: white;
+            font-size: 0.72rem;
+            padding: 1px 6px;
+            border-radius: 3px;
+        }
+
+        .post-content {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            text-align: justify;
+            word-break: break-all;
+        }
+
+        /* 私密锁定界面样式 */
+        .locked-card {
+            background-color: var(--lock-bg);
+            border: 1px solid var(--lock-border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .lock-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .lock-hint {
+            font-size: 0.85rem;
+            color: #d97706;
+            font-weight: 500;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .pwd-input {
+            padding: 8px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            outline: none;
+            width: 160px;
+        }
+
+        .pwd-input:focus {
+            border-color: var(--weibo-orange);
+        }
+
+        .unlock-btn {
+            background-color: var(--weibo-orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .unlock-btn:hover {
+            opacity: 0.9;
+        }
+
+        .unlocked-text {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 15px;
+            }
+            .post-card, .locked-card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 博客 Header -->
+    <header>
+        <div class="header-container">
+            <div class="avatar">xsw</div>
+            <div class="blog-info">
+                <div class="blog-name">xsw不败类 的个人博客</div>
+                <div class="blog-desc">水木清华 ｜ 临床医学 ｜ 记录生活</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2014-06-25 -->
+        <div class="post-card">
+            <div class="post-meta">2014-06-25 18:00 来自 iPhone 5s</div>
+            <div class="post-content">8年本硕博，今天终于拿到了博士学位证！再见，水木清华，未来的路，仁安医院见！</div>
+        </div>
+
+        <!-- 2013-05-20 -->
+        <div class="post-card">
+            <div class="post-meta">2013-05-20 19:15 来自 iPhone 5</div>
+            <div class="post-content">又跑砸了，数据一团糟，论文进度严重滞后，心情极度烦躁。是不是我真的很笨，当初根本就不该学医？如果不学医，就不会……</div>
+        </div>
+
+        <!-- 私密 2013-05-19 -->
+        <div class="locked-card">
+            <div class="post-meta">
+                <span class="private-tag">🔒 私密博文</span>
+                <span>2013-05-19 02:18 来自 iPhone 5</span>
+            </div>
+            <div class="lock-box" id="box-20130519">
+                <div class="lock-hint">💡 私密内容 需要输入密码才能显示（密码提示：六位数 生日）</div>
+                <div class="input-group">
+                    <input type="password" class="pwd-input" placeholder="请输入密码" id="pwd-20130519">
+                    <button class="unlock-btn" onclick="checkPassword('20130519')">解锁查看</button>
+                </div>
+            </div>
+            <div class="post-content unlocked-text" id="text-20130519">
+                太恶心了，我不想陪他和那群gay开淫趴，玩群P，总是要偷偷去做性病检测。
+            </div>
+        </div>
+
+        <!-- 2012-06-08 -->
+        <div class="post-card">
+            <div class="post-meta">2012-06-08 23:10 来自 iPhone 4S</div>
+            <div class="post-content">毕业季，同寝室的哥们儿都去烧烤喝啤了，我还在实验室做PCR。虽然累，但我这篇论文很有希望发SCI！加油！胜利就在眼前！</div>
+        </div>
+
+        <!-- 私密 2012-02-14 -->
+        <div class="locked-card">
+            <div class="post-meta">
+                <span class="private-tag">🔒 私密博文</span>
+                <span>2012-02-14 23:45 来自 iPhone 4S</span>
+            </div>
+            <div class="lock-box" id="box-20120214">
+                <div class="lock-hint">💡 私密内容 需要输入密码才能显示（密码提示：六位数 生日）</div>
+                <div class="input-group">
+                    <input type="password" class="pwd-input" placeholder="请输入密码" id="pwd-20120214">
+                    <button class="unlock-btn" onclick="checkPassword('20120214')">解锁查看</button>
+                </div>
+            </div>
+            <div class="post-content unlocked-text" id="text-20120214">
+                今天情人节，他逼我陪他出去吃饭，还叫了几个认识的gay一起去酒店开房。在路口遇到同班同学了，我恨不得死在原地。<br>
+                我在这群老老少少的畜生眼里到底算什么？一个免费的泄欲工具？还是一个随时可以毁掉的物件？我恨他，我恨死他了！
+            </div>
+        </div>
+
+        <!-- 私密 2011-07-02 -->
+        <div class="locked-card">
+            <div class="post-meta">
+                <span class="private-tag">🔒 私密博文</span>
+                <span>2011-07-02 01:05 来自 围博网页版</span>
+            </div>
+            <div class="lock-box" id="box-20110702">
+                <div class="lock-hint">💡 私密内容 需要输入密码才能显示（密码提示：六位数 生日）</div>
+                <div class="input-group">
+                    <input type="password" class="pwd-input" placeholder="请输入密码" id="pwd-20110702">
+                    <button class="unlock-btn" onclick="checkPassword('20110702')">解锁查看</button>
+                </div>
+            </div>
+            <div class="post-content unlocked-text" id="text-20110702">
+                又是一个星期五。只要我不听话，他就拿出那个 U 盘在我面前晃。今天在办公室，当着其他同学的面，他道貌岸然地夸我科研做的好，等其他人一走，他就把门锁上了。<br>
+                我活得像一条亟待配种的公狗。凭什么？凭什么我寒窗苦读这么多年，生死全凭这个老畜生一句话？！
+            </div>
+        </div>
+
+        <!-- 私密 2011-03-14 -->
+        <div class="locked-card">
+            <div class="post-meta">
+                <span class="private-tag">🔒 私密博文</span>
+                <span>2011-03-14 03:22 来自 围博网页版</span>
+            </div>
+            <div class="lock-box" id="box-20110314">
+                <div class="lock-hint">💡 私密内容 需要输入密码才能显示（密码提示：六位数 生日）</div>
+                <div class="input-group">
+                    <input type="password" class="pwd-input" placeholder="请输入密码" id="pwd-20110314">
+                    <button class="unlock-btn" onclick="checkPassword('20110314')">解锁查看</button>
+                </div>
+            </div>
+            <div class="post-content unlocked-text" id="text-20110314">
+                为什么是我……为什么要这样对我？！今晚他找我去校外的公寓讨论课题，他给我的饮料里绝对放了东西，我全身发麻根本动不了。<br>
+                他拍了全部过程，还告诉我，如果我敢说出去或者报警，这些视频明天就会发到全校论坛上，让我在学校里“一炮而红”。<br>
+                恶心，我真的想吐，我觉得自己脏透了，洗了一夜的澡，皮都要搓破了。我到底该怎么办？
+            </div>
+        </div>
+
+        <!-- 2010-10-15 -->
+        <div class="post-card">
+            <div class="post-meta">2010-10-15 19:40 来自 围博网页版</div>
+            <div class="post-content">终于进临床实习了！第一次跟陈启明教授上轮转，陈老师严厉是严厉，但讲解病案真的绝了，受益匪浅。一定要好好表现，争取进入他的课题组！</div>
+        </div>
+
+        <!-- 2008-06-20 -->
+        <div class="post-card">
+            <div class="post-meta">2008-06-20 01:05 来自 围博网页版</div>
+            <div class="post-content">挂科边缘试探！生理学和生化为什么能在同一周考啊？？老师求求了，给个60分万岁吧！熬夜复习喝了三罐红牛，现在心率120，感觉自己需要送急诊了。</div>
+        </div>
+
+        <!-- 2008-05-20 -->
+        <div class="post-card">
+            <div class="post-meta">2008-05-20 01:30 来自 围博网页版</div>
+            <div class="post-content">期末考要逼死人了！生理、病理、药理、生化……感觉头发要掉光了。今晚又是通宵复习的一天，心血管这个章节怎么这么难记啊！</div>
+        </div>
+
+        <!-- 2006-10-15 -->
+        <div class="post-card">
+            <div class="post-meta">2006-10-15 22:18 来自 诺基亚S60</div>
+            <div class="post-content">大一的新生研讨课太无聊了，组胚和解剖的图谱背得我眼睛发酸。今晚下课去西门吃烧烤，有人组队吗？</div>
+        </div>
+
+        <!-- 2006-09-18 -->
+        <div class="post-card">
+            <div class="post-meta">2006-09-18 22:15 来自 诺基亚 N73</div>
+            <div class="post-content">报到一周，清华的医学院真的好大。解剖课第一天，第一次见大体老师，敬畏！希望能顺利度过这八年，做一个好医生！</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© xsw不败类 个人博客 ｜ 版权所有</p >
+    </footer>
+
+    <script>
+        function checkPassword(id) {
+            const inputPwd = document.getElementById('pwd-' + id).value.trim();
+            if (inputPwd === '880720') {
+                document.getElementById('box-' + id).style.display = 'none';
+                document.getElementById('text-' + id).style.display = 'block';
+            } else {
+                alert('密码错误！提示：先去尝试搜索其他关键词吧');
+            }
+        }
+    </script>
+
+</body>
+</html
