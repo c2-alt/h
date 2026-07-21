@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未知请柬 - 引言</title>
+    <style>
+        /* 页面基础暗黑风格设置，非常适合 ARG 氛围 */
+        body {
+            background-color: #0d0d0d;
+            color: #e0e0e0;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        /* 主体容器 */
+        .container {
+            max-width: 600px;
+            width: 85%;
+            padding: 40px 30px;
+            background-color: #141414;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 4px;
+        }
+
+        /* 引言段落 */
+        .intro-text {
+            font-size: 1.05rem;
+            color: #cccccc;
+            text-align: justify;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        /* 按钮样式 */
+        .btn-container {
+            text-align: center;
+        }
+
+        .enter-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: #e0e0e0;
+            border: 1px solid #555555;
+            padding: 12px 36px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        /* 鼠标悬停在按钮上的效果 */
+        .enter-btn:hover {
+            background-color: #e0e0e0;
+            color: #0d0d0d;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 剧情引言文本 -->
+        <div class="intro-text">
+            两个月前，你从成都去杭州出差，顺道和毕业后留在那边工作的大学舍友见了面，当面恭喜她订婚快乐。她说，过阵子就把电子请柬发给你，另外两位舍友也会到场，叮嘱你一定得来。就像当年四个人在宿舍夜谈时约好的，要一起见证彼此的幸福。
+        </div>
+
+        <!-- 跳转按钮（后面制作第二页时，把 level1.html 替换成对应的文件名即可） -->
+        <div class="btn-container">
+            <a href="level1.html" class="enter-btn">点击进入</a>
+        </div>
+    </div>
+
+</body>
+</html>
