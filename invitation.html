@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚礼请柬｜WEDDING INVITATION</title>
+    <style>
+        /* CSS 变量：定义清新高级的色彩搭配 */
+        :root {
+            --bg-color: #faf8f5;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #7a7a7a;
+            --accent-color: #b8977e;
+            --border-color: #f0ece6;
+            --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            line-height: 1.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+        }
+
+        /* 居中容器卡片 */
+        .invitation-card {
+            background: var(--card-bg);
+            max-width: 520px;
+            width: 100%;
+            padding: 40px 28px;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        /* 统一定义阶梯动画初始状态 */
+        .animate-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* 淡入上移动画核心定义 */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 阶梯延迟设置 (入场顺序) */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+        .delay-4 { animation-delay: 0.55s; }
+        .delay-5 { animation-delay: 0.7s; }
+        .delay-6 { animation-delay: 0.85s; }
+        .delay-7 { animation-delay: 1.0s; }
+        .delay-8 { animation-delay: 1.15s; }
+
+        /* 标题样式 */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            color: var(--text-main);
+        }
+
+        .header .sub-title {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--accent-color);
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        /* 分割线 */
+        .divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 25px 0;
+            width: 100%;
+        }
+
+        /* 主邀请词与新人姓名 */
+        .couple-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .invitation-text {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+        }
+
+        .names {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        /* 详情列表 */
+        .info-section {
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: var(--accent-color);
+            font-weight: 500;
+            width: 85px;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            color: var(--text-main);
+        }
+
+        /* 婚礼流程区 */
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .timeline {
+            font-size: 0.88rem;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 留言板区域 */
+        .guestbook {
+            margin-top: 20px;
+        }
+
+        .comment-card {
+            background-color: var(--bg-color);
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 6px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .comment-text {
+            font-size: 0.88rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-card">
+        <!-- 头部标题 -->
+        <div class="header animate-item delay-1">
+            <h1>婚礼请柬</h1>
+            <div class="sub-title">WEDDING INVITATION</div>
+        </div>
+
+        <!-- 邀请主文案与新人 -->
+        <div class="couple-section animate-item delay-2">
+            <p class="invitation-text">谨定于公元2023年9月19日为我们举行婚礼<br>诚邀您共同见证这神圣而美好的时刻</p >
+            <div class="names">新娘：闻 粤 &nbsp;&amp;&nbsp; 新郎：许斯文</div>
+        </div>
+
+        <div class="divider animate-item delay-3"></div>
+
+        <!-- 婚礼详细信息 -->
+        <div class="info-section animate-item delay-3">
+            <div class="info-item">
+                <span class="info-label">婚礼时间：</span>
+                <span class="info-content">2023年09月19日 星期二 18:00 正式开席</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">婚礼地点：</span>
+                <span class="info-content">杭州市西湖区灵荫路188号 杭州西子湖四季酒店 宴会厅</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">席设地点：</span>
+                <span class="info-content">一楼 宴会厅 (凭电子请柬入座)</span>
+            </div>
+        </div>
+
+        <!-- 婚礼流程 -->
+        <div class="section-title animate-item delay-4">婚礼流程 SCHEDULE</div>
+        <div class="timeline animate-item delay-4">
+            <div class="timeline-item">
+                <span>15:30 - 16:30</span>
+                <span>宾客签到 / 享用精致下午茶 &amp; 拍照打卡</span>
+            </div>
+            <div class="timeline-item">
+                <span>16:30 - 17:30</span>
+                <span>草坪户外仪式（西子湖畔草坪区）</span>
+            </div>
+            <div class="timeline-item">
+                <span>17:30 - 18:00</span>
+                <span>宾客移步宴会厅入座 / 观赏开场婚礼灯光秀</span>
+            </div>
+            <div class="timeline-item">
+                <span>18:00 - 19:30</span>
+                <span>晚宴正式开始 / 婚礼仪式 &amp; 新人致辞 &amp; 敬酒</span>
+            </div>
+            <div class="timeline-item">
+                <span>19:30 - 21:00</span>
+                <span>After Party 派对时间 / 抽奖互动 &amp; 自由活动</span>
+            </div>
+        </div>
+
+        <div class="divider animate-item delay-5"></div>
+
+        <!-- 宾客留言板 -->
+        <div class="section-title animate-item delay-5">宾客留言板 GUESTBOOK</div>
+        <div class="guestbook">
+            <div class="comment-card animate-item delay-5">
+                <div class="comment-header">
+                    <span class="comment-author">林晓晨</span>
+                    <span>2023-09-10 14:22</span>
+                </div>
+                <div class="comment-text">哇！粤粤要结婚啦，恭喜恭喜！郎才女貌太般配了，我到时候一定到，给你们包个大红包。</div>
+            </div>
+
+            <div class="comment-card animate-item delay-6">
+                <div class="comment-header">
+                    <span class="comment-author">张健</span>
+                    <span>2023-09-11 09:15</span>
+                </div>
+                <div class="comment-text">斯文老兄，恭喜恭喜！前两年刚升上仁安国际医院的心内科主任，今年又迎娶佳人，真是事业爱情双丰收啊，太让人羡慕了。祝你们新婚快乐，白头偕老！</div>
+            </div>
+
+            <div class="comment-card animate-item delay-7">
+                <div class="comment-header">
+                    <span class="comment-author">周阳婷</span>
+                    <span>2023-09-10 18:40</span>
+                </div>
+                <div class="comment-text">粤宝贝，太为你开心了，祝你们琴瑟和鸣，早生贵子！919杭州见啦！</div>
+            </div>
+
+            <div class="comment-card animate-item delay-8">
+                <div class="comment-header">
+                    <span class="comment-author">陈苍术</span>
+                    <span>2023-09-11 21:05</span>
+                </div>
+                <div class="comment-text">新婚快乐！许主任工作那么忙还能把婚礼筹备得这么精致，果然是讲究人。祝百年好合！</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
