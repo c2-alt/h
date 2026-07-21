@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统桌面</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 虚拟设备外壳（模拟手机/平板屏幕） */
+        .device-screen {
+            width: 375px;
+            height: 667px;
+            background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+            border-radius: 20px;
+            border: 2px solid #444;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部状态栏 */
+        .status-bar {
+            height: 30px;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #ccc;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* 桌面图标区域 */
+        .desktop {
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .icon-box {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .icon-box:active {
+            transform: scale(0.95);
+        }
+
+        /* 威信图标风格 */
+        .weixin .icon-box {
+            background-color: #07c160;
+            color: white;
+        }
+
+        /* 浏览器图标风格 */
+        .browser .icon-box {
+            background-color: #2b7cff;
+            color: white;
+        }
+
+        .app-name {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #eee;
+        }
+
+        /* 弹窗/软件界面通用遮罩 */
+        .app-window {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ededed;
+            color: #000;
+            display: none; /* 默认隐藏 */
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        /* 威信界面样式 */
+        .chat-header {
+            height: 50px;
+            background-color: #ededed;
+            border-bottom: 1px solid #dcdcdc;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-weight: bold;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .back-btn {
+            font-size: 18px;
+            cursor: pointer;
+            margin-right: 15px;
+            color: #333;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f3f3f3;
+        }
+
+        .message-time {
+            text-align: center;
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .message-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            background-color: #bbb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .msg-bubble {
+            max-width: 230px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            word-break: break-all;
+        }
+
+        .invitation-card {
+            border-top: 1px solid #eee;
+            margin-top: 8px;
+            padding-top: 8px;
+        }
+
+        .invitation-link {
+            color: #576b95;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .invitation-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 浏览器界面样式 */
+        .browser-header {
+            height: 45px;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .url-bar {
+            flex: 1;
+            height: 28px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 14px;
+            padding: 0 10px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+
+        .browser-body {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            color: #666;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="device-screen">
+        <div class="status-bar">
+            <span>9:42</span>
+            <span>5G 🔋</span>
+        </div>
+
+        <div class="desktop">
+            <div class="app-icon weixin" onclick="openApp('weixin-app')">
+                <div class="icon-box">威</div>
+                <div class="app-name">威信</div>
+            </div>
+
+            <div class="app-icon browser" onclick="openApp('browser-app')">
+                <div class="icon-box">🌐</div>
+                <div class="app-name">浏览器</div>
+            </div>
+        </div>
+
+        <div id="weixin-app" class="app-window">
+            <div class="chat-header">
+                <span class="back-btn" onclick="closeApp('weixin-app')">❮</span>
+                <span>粤粤</span>
+            </div>
+            <div class="chat-body">
+                <div class="message-time">昨天 14:20</div>
+                <div class="message-item">
+                    <div class="avatar">闻</div>
+                    <div>
+                        <div class="msg-bubble">
+                            婚礼的时间和地点都定好了，这是我们的电子请柬，到时候你一定要来呀！
+                            <div class="invitation-card">
+                                💌 <a href="invitation.html" class="invitation-link">【闻粤与许斯文的结婚请柬】</a >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="browser-app" class="app-window">
+            <div class="browser-header">
+                <span class="back-btn" onclick="closeApp('browser-app')">❮</span>
+                <div class="url-bar">https://www.google.com</div>
+            </div>
+            <div class="browser-body">
+                <p>浏览器准备就绪。</p >
+                <p style="margin-top: 10px; color: #999;">（你可以在这里搜索关键词或线索）</p >
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 打开软件
+        function openApp(appId) {
+            document.getElementById(appId).style.display = 'flex';
+        }
+
+        // 返回桌面
+        function closeApp(appId) {
+            document.getElementById(appId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
