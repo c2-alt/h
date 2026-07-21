@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻报道 - 成都街头发生一起严重交通事故 29岁女子不幸身亡</title>
+    <style>
+        :root {
+            --primary-color: #333333;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+        }
+
+        /* 报纸风格 Header */
+        header {
+            background-color: #ffffff;
+            border-bottom: 3px solid var(--primary-color);
+            padding: 15px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .paper-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .paper-sub {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 35px 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .article-title {
+            font-size: 1.45rem;
+            color: #1a1a1a;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .article-body {
+            font-size: 0.98rem;
+            color: #2c3e50;
+            text-align: justify;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-indent: 2em;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 600px) {
+            .article-card {
+                padding: 20px 18px;
+            }
+            .article-title {
+                font-size: 1.25rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部 Header -->
+    <header>
+        <div class="header-container">
+            <span class="paper-logo">《新杭报》数字版</span>
+            <span class="paper-sub">社会新闻版（第A08版）</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-card">
+            <!-- 标题 -->
+            <div class="article-title">成都街头发生一起严重交通事故 29岁女子不幸身亡 警方通报：司机涉嫌醉酒驾驶已被刑拘</div>
+
+            <!-- 元信息 -->
+            <div class="article-meta">
+                <span>📅 刊发时间：2023年09月12日 18:30</span>
+                <span>📰 来源：《新杭报》数字版</span>
+                <span>✍️ 记者：许儒</span>
+            </div>
+
+            <!-- 正文 -->
+            <div class="article-body">
+                <p><strong>本报讯（记者 许儒）</strong> 9月11日深夜23时20分许，成都市锦江区天府大道与蜀锦路交汇路口发生一起严重交通事故。一辆黑色越野车在行驶过程中突然失控冲上人行道，将正在路边等候网约车的29岁女子撞飞。经现场120急救人员全力抢救无效，不幸当场身亡。</p >
+                <p>据现场目击群众透露，肇事车辆当时速度极快，在未采取任何刹车措施的情况下直接撞向受害者。肇事驾驶员为38岁男子张某，事故发生后其神情恍惚、身上散发着浓烈酒气。</p >
+                <p>成都市公安局交通管理局昨日发布警情通报称，经现场呼气式酒精检测及血液酒精含量检验，驾驶员张某血液中酒精含量高达 186.5mg/100ml，已远超醉酒驾驶标准。目前，犯罪嫌疑人张某因涉嫌交通肇事罪已被警方依法刑事拘留，案件正在进一步侦办中。</p >
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 《新杭报》社 版权所有 ｜ 未经许可不得转载</p >
+    </footer>
+
+</body>
+</html>
