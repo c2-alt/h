@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>追思献花 - 仁安国际医院</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #7f8c8d;
+            --bg-color: #f4f6f7;
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #666666;
+            --border-color: #dcdcdc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* 顶部 Logo 与 导航栏 */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: normal;
+            display: block;
+        }
+
+        /* 导航菜单 */
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .memorial-header {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .memorial-title {
+            font-size: 1.5rem;
+            color: #1a252f;
+            font-weight: bold;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .memorial-intro {
+            font-size: 0.95rem;
+            color: #555555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* 追思专家列表网格 */
+        .memorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .memorial-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .doctor-header {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .doctor-name-title {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .doctor-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .doctor-title {
+            font-size: 0.88rem;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        .doctor-dates {
+            font-size: 0.82rem;
+            color: #888888;
+        }
+
+        .doctor-degree {
+            font-size: 0.85rem;
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .doctor-bio {
+            font-size: 0.88rem;
+            color: #555555;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* 献花互动按钮区 */
+        .flower-action {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px dashed #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flower-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #cccccc;
+            color: #333333;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .flower-btn:hover {
+            background-color: #e2e8f0;
+            border-color: #b0b0b0;
+        }
+
+        .flower-count {
+            font-size: 0.82rem;
+            color: #7f8c8d;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        /* 手机端适配调整 */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 8px;
+            }
+            .nav-link {
+                padding: 5px 8px;
+                font-size: 0.85rem;
+            }
+            .memorial-grid {
+                grid-template-columns: 1fr;
+            }
+            .memorial-header {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="nav-container">
+            <a href=" " class="logo">
+                🏥 仁安国际医院
+                <span class="logo-sub">REN'AN INTERNATIONAL HOSPITAL</span>
+            </a >
+            <nav>
+                <a href="doctors.html" class="nav-link">医资力量</a >
+                <a href="news.html" class="nav-link">通知公告</a >
+                <a href="memorial.html" class="nav-link active">追思献花</a >
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 追思寄语 Header -->
+        <div class="memorial-header">
+            <div class="memorial-title">追思寄语 MEMORIAL</div>
+            <div class="memorial-intro">
+                谨以此区深切铭记为仁安国际医院奠基立业、奉献毕生精力的诸位前任领导与各学科带头人。2021年7月3日，一场突如其来的噩耗夺走了他们的生命，但他们卓越的医术与悬壶济世的医德将永载仁安史册。
+            </div>
+        </div>
+
+        <!-- 追思专家列表 -->
+        <div class="memorial-grid">
+            <!-- 张雍和 -->
+            <div class="memorial-card">
+                <div>
+                    <div class="doctor-header">
+                        <div class="doctor-name-title">
+                            <span class="doctor-name">张雍和</span>
+                            <span class="doctor-title">前院长</span>
+                        </div>
+                        <div class="doctor-dates">1961年04月12日 — 2021年07月03日（享年60岁）</div>
+                    </div>
+                    <div class="doctor-degree">北京协和医学院医学博士 ｜ 中国工程院院士候选人</div>
+                    <div class="doctor-bio">
+                        仁安国际医院创始人、首任院长。华东地区心血管外科泰斗，享国务院特殊津贴。生前致力于复杂心脏搭桥与器官移植技术的临床推广，为医院的创立与三甲建设作出了不可磨灭的开创性贡献。
+                    </div>
+                </div>
+                <div class="flower-action">
+                    <button class="flower-btn" onclick="addFlower(this)">🌼 献花追思</button>
+                    <span class="flower-count">已献花 <span class="count-num">1204</span> 朵</span>
+                </div>
+            </div>
+
+            <!-- 陈启明 -->
+            <div class="memorial-card">
+                <div>
+                    <div class="doctor-header">
+                        <div class="doctor-name-title">
+                            <span class="doctor-name">陈启明</span>
+                            <span class="doctor-title">前副院长</span>
+                        </div>
+                        <div class="doctor-dates">1963年09月18日 — 2021年07月03日（享年58岁）</div>
+                    </div>
+                    <div class="doctor-degree">清华大学北京协和医学院医学博士 ｜ 博士生导师</div>
+                    <div class="doctor-bio">
+                        兼任心血管内科学科带头人，主管医院前沿科研与学术转化。在复杂冠心病介入治疗及心肌细胞修复等领域享有极高声誉，生前主导了多项国家级重点心血管科研课题。
+                    </div>
+                </div>
+                <div class="flower-action">
+                    <button class="flower-btn" onclick="addFlower(this)">🌼 献花追思</button>
+                    <span class="flower-count">已献花 <span class="count-num">986</span> 朵</span>
+                </div>
+            </div>
+
+            <!-- 徐崇德 -->
+            <div class="memorial-card">
+                <div>
+                    <div class="doctor-header">
+                        <div class="doctor-name-title">
+                            <span class="doctor-name">徐崇德</span>
+                            <span class="doctor-title">前心内科主任</span>
+                        </div>
+                        <div class="doctor-dates">1962年11月05日 — 2021年07月03日（享年59岁）</div>
+                    </div>
+                    <div class="doctor-degree">上海医科大学（现复旦大学上海医学院）医学博士</div>
+                    <div class="doctor-bio">
+                    我国早期冠心病介入诊疗技术的开拓者之一。生前带领仁安心内科团队攻克了多项高危复杂冠脉病变手术，发表学术论文百余篇，培养了大批优秀的中青年心血管专科人才。
+                    </div>
+                </div>
+                <div class="flower-action">
+                    <button class="flower-btn" onclick="addFlower(this)">🌼 献花追思</button>
+                    <span class="flower-count">已献花 <span class="count-num">852</span> 朵</span>
+                </div>
+            </div>
+
+            <!-- 吴建国 -->
+            <div class="memorial-card">
+                <div>
+                    <div class="doctor-header">
+                        <div class="doctor-name-title">
+                            <span class="doctor-name">吴建国</span>
+                            <span class="doctor-title">前神经外科主任</span>
+                        </div>
+                        <div class="doctor-dates">1961年08月14日 — 2021年07月03日（享年60岁）</div>
+                    </div>
+                    <div class="doctor-degree">首都医科大学神经外科医学博士</div>
+                    <div class="doctor-bio">
+                        著名显微神经外科专家，精通高难度颅底肿瘤切除及脑血管疾病的显微手术。生前曾担任中华医学会神经外科学分会常务委员，是国内颅脑手术领域的权威专家。
+                    </div>
+                </div>
+                <div class="flower-action">
+                    <button class="flower-btn" onclick="addFlower(this)">🌼 献花追思</button>
+                    <span class="flower-count">已献花 <span class="count-num">793</span> 朵</span>
+                </div>
+            </div>
+
+            <!-- 邓国强 -->
+            <div class="memorial-card">
+                <div>
+                    <div class="doctor-header">
+                        <div class="doctor-name-title">
+                            <span class="doctor-name">邓国强</span>
+                            <span class="doctor-title">前骨科主任</span>
+                        </div>
+                        <div class="doctor-dates">1961年01月30日 — 2021年07月03日（享年60岁）</div>
+                    </div>
+                    <div class="doctor-degree">四川大学华西医学中心医学博士</div>
+                    <div class="doctor-bio">
+                        骨科及脊柱外科资深专家，擅长复杂脊柱畸形矫正与高难度关节置换术。生前致力于推动骨科微创技术的普及，行医严谨，深受广大患者与同行敬重。
+                    </div>
+                </div>
+                <div class="flower-action">
+                    <button class="flower-btn" onclick="addFlower(this)">🌼 献花追思</button>
+                    <span class="flower-count">已献花 <span class="count-num">710</span> 朵</span>
+                </div>
+            </div>
+
+            <!-- 钱宏伟 -->
+            <div class="memorial-card">
+                <div>
+                    <div class="doctor-header">
+                        <div class="doctor-name-title">
+                            <span class="doctor-name">钱宏伟</span>
+                            <span class="doctor-title">前普通外科主任</span>
+                        </div>
+                        <div class="doctor-dates">1963年05月09日 — 2021年07月03日（享年58岁）</div>
+                    </div>
+                    <div class="doctor-degree">华中科技大学同济医学院医学博士</div>
+                    <div class="doctor-bio">
+                        普外科及肝胆胰外科专家，精通复杂消化系统恶性肿瘤的根治性手术。临床解剖功底极其深厚，生前带头组建了医院多学科肿瘤诊疗（MDT）中心。
+                    </div>
+                </div>
+                <div class="flower-action">
+                    <button class="flower-btn" onclick="addFlower(this)">🌼 献花追思</button>
+                    <span class="flower-count">已献花 <span class="count-num">684</span> 朵</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 仁安国际医院 REN'AN INTERNATIONAL HOSPITAL. All Rights Reserved.</p >
+        <p style="margin-top: 5px; opacity: 0.7;">地址：杭州市西湖区灵荫路190号 ｜ 电话：0571-8888XXXX</p >
+    </footer>
+
+    <script>
+        function addFlower(btn) {
+            const countSpan = btn.parentElement.querySelector('.count-num');
+            let currentCount = parseInt(countSpan.textContent);
+            countSpan.textContent = currentCount + 1;
+            btn.innerHTML = '💐 已献花';
+            btn.style.backgroundColor = '#e2e8f0';
+            btn.disabled = true;
+        }
+    </script>
+
+</body>
+</html>
