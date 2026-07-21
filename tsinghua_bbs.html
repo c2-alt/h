@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水木清华 BBS - 校友论坛</title>
+    <style>
+        :root {
+            --tsinghua-purple: #660099;
+            --purple-light: #f3ebf7;
+            --bg-color: #f5f6f8;
+            --card-bg: #ffffff;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 顶部 BBS 导航 */
+        header {
+            background-color: var(--tsinghua-purple);
+            color: #ffffff;
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bbs-logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bbs-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* 主体内容 */
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .forum-header {
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--tsinghua-purple);
+        }
+
+        .forum-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--tsinghua-purple);
+        }
+
+        .forum-sub {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            margin-top: 2px;
+        }
+
+        /* 帖子卡片 */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .post-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1a0dab;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .post-meta {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            gap: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+
+        .post-author {
+            color: var(--tsinghua-purple);
+            font-weight: 500;
+        }
+
+        .post-content {
+            font-size: 0.95rem;
+            color: #333333;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            white-space: pre-line;
+            text-align: justify;
+        }
+
+        /* 评论区 */
+        .comments-section {
+            background-color: #f9fbfd;
+            border-radius: 6px;
+            padding: 15px;
+            border: 1px solid #eef2f5;
+        }
+
+        .comments-header {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--tsinghua-purple);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed #dcdcdc;
+        }
+
+        .comment-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.88rem;
+        }
+
+        .comment-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .comment-user {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-right: 6px;
+        }
+
+        .comment-text {
+            color: #444444;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 600px) {
+            .post-card {
+                padding: 15px;
+            }
+            .post-meta {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="header-container">
+            <a href=" " class="bbs-logo">
+                🌊 水木清华 BBS
+                <span class="bbs-badge">校友社区</span>
+            </a >
+        </div>
+    </header>
+
+    <main>
+        <div class="forum-header">
+            <div class="forum-title">版块：水木社区 / 校友生活与学术讨论</div>
+            <div class="forum-sub">欢迎回到水木清华 BBS，请自觉遵守社区发言规范</div>
+        </div>
+
+        <!-- 帖子 1 -->
+        <div class="post-card">
+            <div class="post-title">听劝！听涛园的新出香辣大排面千万别点，纯纯踩雷！</div>
+            <div class="post-meta">
+                <span>发帖人：<span class="post-author">纯情小肥羊</span></span>
+                <span>发布时间：2023-05-02 12:10</span>
+            </div>
+            <div class="post-content">今天中午去听涛园尝鲜，点了这个新打标的香辣大排面。大排干柴得像在嚼鞋底，面条一点筋道都没有，汤底一股浓浓的味精勾兑味！花了18块钱大冤种就是我。大家听劝，想吃大排还是去观愁园或者清芬吧！</div>
+
+            <div class="comments-section">
+                <div class="comments-header">💬 热门评论 (2)</div>
+                <div class="comment-item">
+                    <span class="comment-user">观心：</span>
+                    <span class="comment-text">哈哈哈哈哈哈听涛园的师傅手艺一向很稳定地难吃，楼主居然敢去试吃新品，勇士！</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">紫薯小熊：</span>
+                    <span class="comment-text">18块钱在紫荆地下能吃两个菜加饭了，听涛园属于是抢钱。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 帖子 2 -->
+        <div class="post-card">
+            <div class="post-title">给最近失眠焦虑严重的老铁们推荐一家心理咨询工作室</div>
+            <div class="post-meta">
+                <span>发帖人：<span class="post-author">论文写不完不改名</span></span>
+                <span>发布时间：2023-03-08 16:45</span>
+            </div>
+            <div class="post-content">最近组里开课题压力大到连续失眠半个月，听别人介绍了钟凌骁，看得真心不错，她本硕是隔壁北大的，之后去宾大读博了。虽然因为她工作室线下在杭州，所以只能线上诊疗，但是真的有用！我才做完两次心理辅导和睡眠监测，前几晚都睡了个好觉。有同样失眠焦虑的校友强烈推荐去试试，我准备等放假去杭州体验一下线下催眠疗法。</div>
+
+            <div class="comments-section">
+                <div class="comments-header">💬 热门评论 (3)</div>
+                <div class="comment-item">
+                    <span class="comment-user">哇哦九个半：</span>
+                    <span class="comment-text">诶？钟凌骁？我记得她前两年不是说要留美的吗？怎么突然回国了？没留住吗？</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">奇思妙想lami：</span>
+                    <span class="comment-text">因为国内这几年高端心理诊疗和神经调控还是蓝海吧，想创业试试。</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">坏蛋玉米粥：</span>
+                    <span class="comment-text">看了下官网价格，穷苦学生告辞了，富姐富哥们请便吧。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 帖子 3 -->
+        <div class="post-card">
+            <div class="post-title">求问！选修课《博弈论与现代生活》这门课考核给分怎么样？会拉绩点吗？</div>
+            <div class="post-meta">
+                <span>发帖人：<span class="post-author">秃头预备役</span></span>
+                <span>发布时间：2023-02-20 20:15</span>
+            </div>
+            <div class="post-content">选课系统开了，看这门选修课时间挺合适的，不需要抢。想问问有没有上学期上过的学姐学哥？老师平时抽查考勤严不严？期末是写论文还是开卷考试？求指路！不想被拉低绩点！</div>
+
+            <div class="comments-section">
+                <div class="comments-header">💬 热门评论 (2)</div>
+                <div class="comment-item">
+                    <span class="comment-user">熊老板：</span>
+                    <span class="comment-text">老师每节课都随机点名，但是期末只要交一篇3000字论文就行，给分挺大方的，我上学期拿了A-。</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">白桃子：</span>
+                    <span class="comment-text">闭眼选，只要点名到了，随便写写就能过，属于福利课。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 帖子 4 -->
+        <div class="post-card" style="border-left: 3px solid #e74c3c;">
+            <div class="post-title">有人知道许斯文吗？</div>
+            <div class="post-meta">
+                <span>发帖人：<span class="post-author">荷塘月色小分队</span></span>
+                <span>发布时间：2022-04-12 11:23</span>
+            </div>
+            <div class="post-content">前几天刷新闻，看到仁安医院的宣传片，才知道这小子都当上仁安这种顶级私立医院的心内科主任了？？我震惊了。当年跟他一个班的，我记得他成绩一般吧。这才毕业几年啊？现在混得这么风生水起。</div>
+
+            <div class="comments-section">
+                <div class="comments-header">💬 热门评论 (6)</div>
+                <div class="comment-item">
+                    <span class="comment-user">咕咕咕：</span>
+                    <span class="comment-text">你们都没听说过他当年那点事儿？</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">嘎嘣：</span>
+                    <span class="comment-text">回复@咕咕咕：别当谜语人啊，什么瓜？</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">captain虫：</span>
+                    <span class="comment-text">人家一路有大神保驾护航呗。陈老师对他那是真的好，不知道给那个废物蹭了多少署名，羡慕不来啊。</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">人工生命A：</span>
+                    <span class="comment-text">哈哈哈哈别装纯了，当年情人节有人撞见陈老头跟他俩人私下出去约会呢。那气氛，啧啧啧。</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">乐乐乐乐子：</span>
+                    <span class="comment-text">口味这么重吗？牛逼，花季少男为了前途委身年近五十的老头。果然男人要想名垂青史，就得接受屁股漏屎啊。</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">何牛牛：</span>
+                    <span class="comment-text">你们还是太年轻了，这事在我们那时候可是心照不宣的。许斯文当年围博还跟我是互关呢，叫xsw不败类，不过现在早不用了。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 帖子 5 -->
+        <div class="post-card">
+            <div class="post-title">【出二手】毕业清仓！九成新九号电动车（带牌）、九成新人体工学椅、没开封的咖啡豆</div>
+            <div class="post-meta">
+                <span>发帖人：<span class="post-author">毕业即失业</span></span>
+                <span>发布时间：2022-06-01 09:30</span>
+            </div>
+            <div class="post-content">马上要退寝了，打包清一些大件行李：
+1. 九号小牛电动车，续航40km，电池刚换不久，带校园牌照，打包800出。
+2. 西昊人体工学椅，无破损，150出。
+3. 进口意式深烘咖啡豆两袋，买多了吃不完，买椅赠送。
+紫荆13号楼自提，有意者私信。</div>
+
+            <div class="comments-section">
+                <div class="comments-header">💬 热门评论 (2)</div>
+                <div class="comment-item">
+                    <span class="comment-user">骑车去拉萨：</span>
+                    <span class="comment-text">电动车有意！楼主私信一下，今天下午可以去你楼下试骑吗？</span>
+                </div>
+                <div class="comment-item">
+                    <span class="comment-user">毕业即失业：</span>
+                    <span class="comment-text">回复@骑车去拉萨：OK</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 水木清华 BBS 社区 版权所有</p >
+    </footer>
+
+</body>
+</html>
