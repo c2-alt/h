@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索引擎 - 搜索结果</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #222222;
+            --text-sub: #70757a;
+            --link-color: #1a0dab;
+            --border-color: #dfe1e5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            padding: 15px;
+        }
+
+        /* 搜索框顶部栏 */
+        .search-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f2f2f2;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 8px 16px;
+            box-shadow: 0 1px 6px rgba(32,33,36,0.1);
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .result-stats {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+        }
+
+        /* 搜索结果列表 */
+        .result-item {
+            margin-bottom: 24px;
+        }
+
+        .result-site {
+            font-size: 12px;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .tag {
+            background-color: #f1f3f4;
+            color: #3c4043;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 3px;
+            margin-left: 6px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            color: var(--link-color);
+            text-decoration: none;
+            line-height: 1.3;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .result-snippet {
+            font-size: 13px;
+            color: #4d5156;
+            line-height: 1.5;
+        }
+
+        .snippet-highlight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部搜索栏 -->
+    <div class="search-header">
+        <div class="search-box">
+            <input type="text" class="search-input" value="仁安启明实验组" readonly>
+        </div>
+    </div>
+
+    <div class="result-stats">找到约 2 个相关结果 （用时 0.03 秒）</div>
+
+    <!-- 词条 1：新闻报道 -->
+    <div class="result-item">
+        <div class="result-site">
+            https://www.hznews.gov.cn/medical/20210805 <span class="tag">新闻报道</span>
+        </div>
+        <a href="news_qiming_jiebong.html" class="result-title">薪火相传 继往开来！“仁安启明实验组”首席专家迎来接棒人</a >
+        <div class="result-snippet">
+            新闻报道：在经历重大悲痛之后，<span class="snippet-highlight">仁安启明实验组</span>今日召开全体学术委员会会议，正式宣布由许斯文主任接棒成为实验组新一任项目首席科学家，全面主持心肌细胞再生与前沿干预课题……
+        </div>
+    </div>
+
+    <!-- 词条 2：官网 -->
+    <div class="result-item">
+        <div class="result-site">
+            https://qiming-lab.renan-hospital.com <span class="tag">官方网站</span>
+        </div>
+        <a href="qiming_lab_home.html" class="result-title">仁安启明实验组 - 心肌细胞再生与前沿医学联合实验室</a >
+        <div class="result-snippet">
+            <span class="snippet-highlight">仁安启明实验组</span>（Ren'an Qiming Lab）官方网站。本实验室由仁安国际医院与顶级资本共同倾力打造，致力于终末期心肌修复、细胞干预及前沿神经-心肌协同诊疗机制的研发与转化……
+        </div>
+    </div>
+
+</body>
+</html>
