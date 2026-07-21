@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>127邮箱 - 登录与收件箱</title>
+    <style>
+        :root {
+            --primary-blue: #0073e6;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-gray: #666666;
+            --border-color: #dcdcdc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部栏 */
+        header {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mail-logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* 登录遮罩层容器 */
+        #login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 380px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .login-box p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .error-msg {
+            color: #d9534f;
+            font-size: 0.82rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* 邮箱主界面（初始隐藏） */
+        #mail-app {
+            display: none;
+            flex: 1;
+            flex-direction: row;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* 左侧邮件列表 */
+        .mail-sidebar {
+            width: 320px;
+            border-right: 1px solid var(--border-color);
+            background-color: #f8f9fa;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 15px 20px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #ffffff;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .mail-list-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .mail-list-item:hover, .mail-list-item.active {
+            background-color: #e6f0fa;
+        }
+
+        .mail-item-sender {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #222;
+        }
+
+        .mail-item-subject {
+            font-size: 0.85rem;
+            color: #555;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .mail-item-time {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        /* 右侧邮件正文内容 */
+        .mail-content-pane {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-color: #ffffff;
+        }
+
+        .empty-tip {
+            color: #aaa;
+            text-align: center;
+            margin-top: 100px;
+            font-size: 0.95rem;
+        }
+
+        .mail-detail h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .mail-meta-box {
+            background: #fdfdfd;
+            border: 1px solid #eaeaea;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .mail-body-text {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        @media (max-width: 768px) {
+            #mail-app {
+                flex-direction: column;
+            }
+            .mail-sidebar {
+                width: 100%;
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部状态栏 -->
+    <header>
+        <div class="mail-logo">127 Mail - 个人安全邮箱</div>
+        <div id="user-status" style="font-size: 0.85rem; color: #aaa;">acqinnn@127.com</div>
+    </header>
+
+    <!-- 登录模块 -->
+    <div id="login-container">
+        <div class="login-box">
+            <h2>身份验证</h2>
+            <p>请输入密码以访问账户 (提示：最重要的日子 六位数)</p >
+            <input type="password" id="pwd-input" class="input-field" placeholder="请输入六位数密码">
+            <button class="login-btn" onclick="verifyPassword()">登 录</button>
+            <div id="error-tip" class="error-msg">密码错误，请重新输入！</div>
+        </div>
+    </div>
+
+    <!-- 登录后的邮箱主界面 -->
+    <div id="mail-app">
+        <!-- 左侧邮件列表 -->
+        <div class="mail-sidebar">
+            <div class="sidebar-header">收件箱 (6)</div>
+            
+            <div class="mail-list-item" onclick="showMail(0)">
+                <div class="mail-item-sender">刘山山</div>
+                <div class="mail-item-subject">傲城，你有觉得哪里不对劲吗？</div>
+                <div class="mail-item-time">2021-11-28 23:14</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(1)">
+                <div class="mail-item-sender">秦傲城</div>
+                <div class="mail-item-subject">Re: 傲城，你有觉得哪里不对劲吗？</div>
+                <div class="mail-item-time">2021-11-29 09:20</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(2)">
+                <div class="mail-item-sender">刘山山</div>
+                <div class="mail-item-subject">秦昭然做得太绝了</div>
+                <div class="mail-item-time">2022-02-05 14:02</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(3)">
+                <div class="mail-item-sender">秦傲城</div>
+                <div class="mail-item-subject">Re: 秦昭然做得太绝了</div>
+                <div class="mail-item-time">2022-02-05 16:45</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(4)">
+                <div class="mail-item-sender">刘山山</div>
+                <div class="mail-item-subject">哈哈哈你们真狠啊！</div>
+                <div class="mail-item-time">2022-09-12 02:18</div>
+            </div>
+
+            <div class="mail-list-item" onclick="showMail(5)">
+                <div class="mail-item-sender">秦傲城</div>
+                <div class="mail-item-subject">Re: 哈哈哈你们真狠啊！</div>
+                <div class="mail-item-time">2022-09-12 09:05</div>
+            </div>
+        </div>
+
+        <!-- 右侧邮件内容展示区 -->
+        <div class="mail-content-pane">
+            <div id="empty-view" class="empty-tip">请选择左侧的一封邮件进行阅读</div>
+            <div id="detail-view" style="display: none;" class="mail-detail">
+                <h3 id="mail-subject">主题标题</h3>
+                <div class="mail-meta-box">
+                    <div><strong>发件人：</strong><span id="mail-from"></span></div>
+                    <div><strong>收件人：</strong><span id="mail-to"></span></div>
+                    <div><strong>时间：</strong><span id="mail-time"></span></div>
+                </div>
+                <div class="mail-body-text" id="mail-body">邮件正文内容</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 邮件数据源
+        const mails = [
+            {
+                subject: "傲城，你有觉得哪里不对劲吗？",
+                from: "刘山山 <liussliu@127.com>",
+                to: "秦傲城 <acqinnn@127.com>",
+                time: "2021-11-28 23:14:02",
+                body: "傲城，你最近有没有觉得秦昭然很奇怪？\n有时候看她的表情、眼神，甚至还有她习惯性拿手指敲桌子的动作，我真的怀疑自己见鬼了，我好几次都觉得站在面前的就是妈。\n唉，真不知道妈立遗嘱的时候是怎么想的，怎么会把整个公司全股权都砸给她？就算是给你，我也没这么气！"
+            },
+            {
+                subject: "Re: 傲城，你有觉得哪里不对劲吗？",
+                from: "秦傲城 <acqinnn@127.com>",
+                to: "刘山山 <liussliu@127.com>",
+                time: "2021-11-29 09:20:15",
+                body: "没有吧。哥你最近压力太大了，神经太敏感啦，姐对我们挺好的呀。\n对了，我刚才去总裁办跟姐说好了，你手上那个项目就先别硬撑着跟她顶了。姐也是为了你好，让你先移交工作，好好去度假休养一段时间，听话啦！"
+            },
+            {
+                subject: "秦昭然做得太绝了",
+                from: "刘山山 <liussliu@127.com>",
+                to: "秦傲城 <acqinnn@127.com>",
+                time: "2022-02-05 14:02:45",
+                body: "拿我度假当借口，直接撤了我的全部职权！秦昭然欺人太甚！\n傲城，你也别在她手下苟且偷生了，你真以为她能放过你？出来跟哥一起干吧，凭我们手里的资源，自立门户照样能做大！"
+            },
+            {
+                subject: "Re: 秦昭然做得太绝了",
+                from: "秦傲城 <acqinnn@127.com>",
+                to: "刘山山 <liussliu@127.com>",
+                time: "2022-02-05 16:45:11",
+                body: "哥，还是算了吧。我在公司留着，起码咱们家的人在董事会还有个说话的位置。\n你自立门户要是缺启动资金，我可以把我名下的那套公寓抵押了转给你。哥你创业加油哦！"
+           },
+            {
+                subject: "哈哈哈你们真狠啊！",
+                from: "刘山山 <liussliu@127.com>",
+                to: "秦傲城 <acqinnn@127.com>",
+                time: "2022-09-12 02:18:30",
+                body: "哈哈哈！我懂了！我全都想明白了！\n她就是她！对吧？秦昭然就是秦谷云！秦谷云根本就没有死！！\n哈哈哈！我像个傻子一样，被那个老东西从头到尾耍得团团转！我就说呢，以前你跟那个表姐一年也说不上两句话、处处看对方不顺眼，怎么妈刚过世，你们俩突然就好得跟亲姐妹似的？\n秦傲城，你们母女俩骗得我好惨啊！！把我逼到供应链违约，让我欠了一屁股永远还不起的债！我现在什么都没了，你们等着，我绝对不会放过你们的！"
+            },
+            {
+                subject: "Re: 哈哈哈你们真狠啊！",
+                from: "秦傲城 <acqinnn@127.com>",
+                to: "刘山山 <liussliu@127.com>",
+                time: "2022-09-12 09:05:19",
+                body: "哥，你别冲动，别吓我啊！\n再怎么说，你也是妈亲生的孩子，你如果真的缺钱或者遇到难处了，给她好好发个邮件认个错，她一定会体谅你、帮你的。\n妈还是用之前那个老邮箱：dingshengqgy@127.com。"
+            }
+        ];
+
+        function verifyPassword() {
+            const pwd = document.getElementById('pwd-input').value;
+            const errorTip = document.getElementById('error-tip');
+
+            if(pwd === '200628') {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('mail-app').style.display = 'flex';
+            } else {
+                errorTip.style.display = 'block';
+            }
+        }
+
+        function showMail(index) {
+            // 切换高亮样式
+            const items = document.querySelectorAll('.mail-list-item');
+            items.forEach((item, idx) => {
+                if(idx === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // 填充邮件内容
+            const mail = mails[index];
+            document.getElementById('empty-view').style.display = 'none';
+            document.getElementById('detail-view').style.display = 'block';
+
+            document.getElementById('mail-subject').innerText = mail.subject;
+            document.getElementById('mail-from').innerText = mail.from;
+            document.getElementById('mail-to').innerText = mail.to;
+            document.getElementById('mail-time').innerText = mail.time;
+            document.getElementById('mail-body').innerText = mail.body;
+        }
+    </script>
+</body>
+</html>
