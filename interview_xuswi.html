@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《医学前沿 Weekly》专访：破局者许斯文</title>
+    <style>
+        :root {
+            --primary-color: #0d2b45;
+            --accent-color: #203c56;
+            --bg-color: #f7f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #1f2d3d;
+            --text-gray: #5e6d82;
+            --border-color: #e4e7ed;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+        }
+
+        /* 顶部栏 */
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .magazine-logo {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .issue-tag {
+            font-size: 0.75rem;
+            background-color: rgba(255,255,255,0.15);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        /* 主体文章区域 */
+        main {
+            max-width: 800px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 35px 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+
+        .article-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .article-body {
+            font-size: 0.98rem;
+            color: #2c3e50;
+            text-align: justify;
+        }
+
+        .lead-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 25px;
+            text-indent: 2em;
+        }
+
+        /* 问答对话样式 */
+        .qa-box {
+            margin-top: 25px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .question {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 20px 0 8px 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .answer {
+            color: #2d3748;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            background-color: #f8fafc;
+            padding: 12px 15px;
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .dialogue {
+            color: #2d3748;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .outro {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-style: italic;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 600px) {
+            .article-card {
+                padding: 20px 18px;
+            }
+            .article-title {
+                font-size: 1.3rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部栏 -->
+    <header>
+        <div class="header-container">
+            <a href=" " class="magazine-logo">《医学前沿 Weekly》</a >
+            <span class="issue-tag">《新锐医学家》第45期</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="article-card">
+            <!-- 标题 -->
+            <div class="article-title">《医学前沿 Weekly》专访：破局者！采访医学新锐仁安国际医院心内科主任许斯文</div>
+            
+            <!-- 元信息 -->
+            <div class="article-meta">
+                <span>📅 刊发时间：2022年10月18日</span>
+                <span>✍️ 记者：许儒</span>
+                <span>📷 摄影：深度影像工作组</span>
+            </div>
+
+            <!-- 正文导语 -->
+            <div class="article-body">
+                <p class="lead-text">在华东地区医疗界，许斯文这个名字在过去一年里几乎代表了一个传奇。</p >
+                <p class="lead-text">去年7月，仁安国际医院经历了一场令人痛心的突发车祸事故，数位老一辈专家不幸集体罹难。在这场巨变之后，在他33岁生日后的第二天，许斯文就临危受命，接任仁安国际医院心血管内科主任。当时外界不乏质疑：如此年轻的执掌者，能否扛起华东顶级私立医院的核心大旗？</p >
+                <p class="lead-text">然而，一年多过去了，许斯文用一组极其亮眼的成绩单打破了所有的质疑：带队完成高难度复杂冠脉介入手术超300例、心内科术后成功率提升12%、主导的“心肌修复与前沿细胞干预”项目获得巨额企业赞助。他不仅稳住了仁安心内科的招牌，更将其推向了一个前所未有的前沿高度。</p >
+                <p class="lead-text">在一个阳光明媚的下午，我们在仁安国际医院VIP诊疗区的办公室里，见到了这位一表人才、目光锐利的中青年医学领军人。</p >
+
+                <!-- 访谈对话区 -->
+                <div class="qa-box">
+                    <div class="question">《医学前沿》： 许主任您好。从去年7月接任心内科主任至今，刚好过去了一年零三个月。外界都惊叹于仁安心内科在您带领下的迭代速度，您自己如何评价这一年多来的变化？</div>
+                    <div class="answer"><strong>许斯文：</strong>（笑）“迭代”这个词用得很好。很多人觉得我年轻，但我一直认为，医学不是论资排辈的行业，而是看谁能真正掌握生命的本质。这一年多来，我和我的团队只是抛弃了一些陈旧的、效率低下老套路，引入了更符合现代生命科技的诊疗逻辑而已。</div>
+
+                    <div class="question">《医学前沿》： 众所周知，您的恩师，也就是仁安医院的前副院长、心血管权威陈启明教授，在去年那场不幸的车祸中离世。作为陈教授生前最得意的门生，他的离去对您个人和学术生涯有什么影响？</div>
+                    <div class="answer"><strong>许斯文：</strong>陈教授……他没有离开。或者说，“死”这个概念，只是大众对生物学形态改变的一种狭隘误解。</div>
+
+                    <div class="dialogue"><strong>《医学前沿》：</strong>您的意思是？</div>
+                    <div class="answer"><strong>许斯文：</strong> 生亦是死，死亦是生。当一具肉体衰老、破损，它的使命就结束了，但只要思想、技术、甚至是某种更核心的东西被完整的延续下来，他就从来没有真正死去。我现在站在这里，坐在他的办公室里，用着他的思维逻辑去管理这个科室，你又怎么知道，我不是他呢？</div>
+
+                    <div class="dialogue"><strong>《医学前沿》：</strong>（笑）许主任这个说法真是充满了深刻的哲学与玄学色彩！确实，正如古人所言“立德立言，薪火相传”。陈教授虽然不在了，但他严谨的治学精神和学术思想，已经完全融入了许主任的骨子里，活在您的心中，以另一种方式继续守护着仁安心内科。</div>
+                    <div class="answer"><strong>许斯文：</strong>总之，精神与肉体，不过是一具可以被随时替换的容器罢了。</div>
+
+                    <div class="dialogue"><strong>《医学前沿》：</strong> 哈哈，许主任真幽默，这或许就是顶级医学家对生命本质的超脱感吧。</div>
+                </div>
+
+                <!-- 结尾 -->
+                <div class="outro">
+                    采访结束后，许主任穿上白大褂，准备前往手术室。看着他挺拔的背影和极其熟练的手术准备动作，不可否认的是，这位34岁的年轻主任，正在用他惊人的魄力与前沿的视野，重新定义着仁安国际医院的未来。
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 《医学前沿 Weekly》 版权所有 ｜ 严禁未经授权转载或商业使用</p >
+    </footer>
+
+</body>
+</html>
