@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仁安国际医院 - 官方网站</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #0066cc;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #666666;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* 顶部 Logo 与 导航栏 */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: normal;
+            display: block;
+        }
+
+        /* 导航菜单 */
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* 照片占位符卡片 */
+        .photo-container {
+            width: 100%;
+            margin: 20px 0;
+            background-color: #e9ecef;
+            border: 1px dashed #b0b8c0;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* 如果插入真实图片，此样式确保图片完美自适应 */
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .photo-placeholder {
+            padding: 40px 20px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* 内容板块 */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px 30px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 12px;
+            margin-bottom: 18px;
+            font-weight: bold;
+        }
+
+        .sub-heading {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin: 16px 0 6px 0;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        /* 手机端适配调整 */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 8px;
+            }
+            .nav-link {
+                padding: 5px 8px;
+                font-size: 0.85rem;
+            }
+            .section-card {
+                padding: 20px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="nav-container">
+            <a href=" " class="logo">
+                🏥 仁安国际医院
+                <span class="logo-sub">REN'AN INTERNATIONAL HOSPITAL</span>
+            </a >
+            <nav>
+                <!-- 预留好的三个通道，后续做对应页面时修改 href 即可 -->
+                <a href="doctors.html" class="nav-link">医资力量</a >
+                <a href="news.html" class="nav-link">通知公告</a >
+                <a href="memorial.html" class="nav-link">追思献花</a >
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 预留照片 1：医院大楼外景/全景 -->
+        <div class="photo-container">
+            <!-- 之后用你自己的图片替换，比如：<a href="#">< img src="your-photo-1.jpg" alt="仁安国际医院外景"></a > -->
+            <a href="#">
+                <div class="photo-placeholder">
+                    📷 ［预留照片 1：仁安国际医院全景外貌图］
+                </div>
+            </a >
+        </div>
+
+        <!-- 发展历程 -->
+        <div class="section-card">
+            <div class="section-title">发展历程 History &amp; Evolution</div>
+            <p>仁安国际医院坐落于美丽的西子湖畔，是一家集医疗、教学、科研为一体的现代化三甲标准顶级私立综合医院。</p >
+            
+            <div class="sub-heading">【奠基与初创 1998年—2010年】</div>
+            <p>医院由国内多位享有国务院特殊津贴的心血管、神经外科权威专家联合创立。在第一代领导核心的带领下，医院从最初的专科诊所，迅速发展成为华东地区最具学术声望的私立医疗机构之一，奠定了坚实的临床医疗基础。</p >
+
+            <div class="sub-heading">【技术攻坚与国际化 2011年—2020年】</div>
+            <p>医院全面引入国际前沿的“细胞级生物医疗”与“神经高阶修复”概念，斥资建立国际标准化无菌实验室。在此期间，医院与多家顶尖科技资本达成战略合作，完成了医疗设备的代际更新，临床科研水平直逼国际一线水准。</p >
+
+            <div class="sub-heading">【迭代与新生 2021年至今】</div>
+            <p>2021年7月，历经一次重大的人事与架构重组后，医院迎来了全面制度创新与人才年轻化战略的落地。现任管理层及各科室核心骨干平均年龄在40岁以内，实现了医院历史上最彻底的“全血复苏”。依托这支精力旺盛、思想前沿的青壮年专家团队，医院正以前所未有的速度，在临床医学的多器官协同治疗等多个领域实现跨越式突破。</p >
+        </div>
+
+        <!-- 荣誉资质 -->
+        <div class="section-card">
+            <div class="section-title">荣誉资质 Honors &amp; Credentials</div>
+            <p style="margin-bottom: 15px;">仁安国际医院始终坚持“科技重塑生命，专业延展未来”的宗旨，凭借严苛的医疗质量控制，荣获多项国内外顶级行业认证：</p >
+            <ul>
+                <li><strong>JCI国际医疗卫生机构认证：</strong> 连续多年以高分通过评审，临床技术与患者安全管理全面接轨国际最高标准。</li>
+                <li><strong>国家级重点核心科室：</strong> 医院心血管内科及前沿神经修复医学研究组被评为省级重点共建学科，在亚太地区享有极高的学术声誉。</li>
+                <li><strong>华东最具影响力私立医院品牌：</strong> 蝉联“中国高端私立医疗百强榜”前十，并在“医疗技术创新力”单项维度评选中荣获全国首位。</li>
+                <li><strong>多项前沿医疗专利授权：</strong> 医院目前拥有独立知识产权的特需科研项目30余项，尤其在“复杂心肌修复”与“中枢神经信号重建”课题上取得突破性进展。</li>
+            </ul>
+        </div>
+
+        <!-- 预留照片 2：院内环境与设施 -->
+        <div class="photo-container">
+            <!-- 之后用你自己的图片替换，比如：<a href="#">< img src="your-photo-2.jpg" alt="院内环境"></a > -->
+            <a href="#">
+                <div class="photo-placeholder">
+                    📷 ［预留照片 2：院内环境与先进医疗设施图］
+                </div>
+            </a >
+        </div>
+
+        <!-- 院内环境 -->
+        <div class="section-card">
+            <div class="section-title">院内环境 Environment &amp; Facilities</div>
+            <p style="margin-bottom: 15px;">为了给患者提供最舒适的治疗体验，仁安国际医院采用“园林化、家庭化、智能化”的现代医疗空间设计：</p >
+
+            <div class="sub-heading">门诊与住院主楼</div>
+            <p>采用现代化玻璃穹顶建筑，采光充足。内部常年维持恒温恒湿的微生态循环系统。</p >
+
+            <div class="sub-heading">特需国际医疗区（VIP中心）</div>
+            <p>位于医院后方独立的独栋建筑内，周围环绕着高大的常绿乔木与深色防窥玻璃，具备极高私密性。该区域配有专属的直升机停机坪与地下保密通道，为特定客户提供“一站式、全封闭”的顶配疗养服务。</p >
+
+            <div class="sub-heading">百级层流手术室</div>
+            <p>拥有目前全球最先进的数字化复合手术室，配备最新一代高精尖显微操作台及术后实时监护系统。所有的器械运转与无菌环境都精确到微米级，确保每一场高难度、超常规的复杂手术都能在近乎完美的条件下完成。</p >
+        </div>
+    </main>
+
+    <footer>
+        <p>© 仁安国际医院 REN'AN INTERNATIONAL HOSPITAL. All Rights Reserved.</p >
+        <p style="margin-top: 5px; opacity: 0.7;">地址：杭州市西湖区灵荫路190号 ｜ 电话：0571-8888XXXX</p >
+    </footer>
+
+</body>
+</html>
