@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医资力量 - 仁安国际医院</title>
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-color: #0066cc;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #666666;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* 顶部 Logo 与 导航栏 */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: normal;
+            display: block;
+        }
+
+        /* 导航菜单 */
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        /* 主体内容区 */
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .page-header {
+            background: var(--card-bg);
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .page-desc {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* 部门/科室板块 */
+        .department-section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .dept-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 12px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* 医生卡片网格 */
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .doctor-card {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 18px;
+        }
+
+        .doctor-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .doctor-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .doctor-title {
+            font-size: 0.88rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .doctor-meta {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .doctor-bio {
+            font-size: 0.88rem;
+            color: #4a5568;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 40px;
+        }
+
+        /* 手机端适配调整 */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 8px;
+            }
+            .nav-link {
+                padding: 5px 8px;
+                font-size: 0.85rem;
+            }
+            .doctor-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="nav-container">
+            <a href=" " class="logo">
+                🏥 仁安国际医院
+                <span class="logo-sub">REN'AN INTERNATIONAL HOSPITAL</span>
+            </a >
+            <nav>
+                <a href="doctors.html" class="nav-link active">医资力量</a >
+                <a href="news.html" class="nav-link">通知公告</a >
+                <a href="memorial.html" class="nav-link">追思献花</a >
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <div class="page-title">医资力量 MEDICAL TEAM</div>
+            <div class="page-desc">汇聚国内外顶尖医学专家，提供国际化高质量医疗服务</div>
+        </div>
+
+      <!-- 管理层 -->
+        <div class="department-section">
+            <div class="dept-title">医院管理层 Management</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">陆长风</span>
+                        <span class="doctor-title">院长</span>
+                    </div>
+                    <div class="doctor-meta">1981年生 ｜ 约翰霍普金斯大学临床医学博士</div>
+                    <div class="doctor-bio">主攻微创立体定向及复杂颅底手术。具备极强的医疗资源整合与团队管理能力，擅长推动前沿技术的临床应用与高难度手术的质控管理。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">沈清源</span>
+                        <span class="doctor-title">副院长</span>
+                    </div>
+                    <div class="doctor-meta">1984年生 ｜ 清华大学北京协和医学院医学博士</div>
+                    <div class="doctor-bio">主管医院科研与学术交流，主攻生物材料临床应用与多学科联合诊疗（MDT）。在国际顶级期刊发表多篇高影响因子论文，学术资源广泛。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">沈唯</span>
+                        <span class="doctor-title">护理部主任</span>
+                    </div>
+                    <div class="doctor-meta">1984年生 ｜ 复旦大学护理学院护理学博士</div>
+                    <div class="doctor-bio">拥有十余年大型三甲医院临床护理与护理管理经验。精通临床护理质控、急危重症护理响应机制及护理人员梯队建设，主导全院标准化服务与护理科研项目。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 心血管内科 -->
+        <div class="department-section">
+            <div class="dept-title">心血管内科 Department of Cardiology</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">许斯文</span>
+                        <span class="doctor-title">主任</span>
+                    </div>
+                    <div class="doctor-meta">1988年生 ｜ 清华大学北京协和医学院医学博士</div>
+                    <div class="doctor-bio">本院最年轻的学科带头人。擅长冠心病复杂介入治疗（CTO）、心律失常消融及终末期心衰拯救。手术操作极其精细高超，同时主导心肌修复的前沿课题研究。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">高峻</span>
+                        <span class="doctor-title">副主任</span>
+                    </div>
+                    <div class="doctor-meta">1986年生 ｜ 复旦大学上海医学院临床医学博士</div>
+                    <div class="doctor-bio">精于急性心肌梗死、心源性休克等危重症抢救，行医风格稳健，主理心内科重症监护室（CCU）的日常临床工作与风险控制。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">韩雷</span>
+                        <span class="doctor-title">护士长</span>
+                    </div>
+                    <div class="doctor-meta">1989年生 ｜ 中南大学湘雅护理学院护理学硕士</div>
+                    <div class="doctor-bio">拥有十余年三甲医院心内科护理经验，精通心血管介入术后的围手术期护理、急危重症预警及病房团队的高效管理。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 神经外科 -->
+        <div class="department-section">
+            <div class="dept-title">神经外科 Department of Neurosurgery</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">戴维</span>
+                        <span class="doctor-title">主任</span>
+                    </div>
+                    <div class="doctor-meta">1984年生 ｜ 德国海德堡大学医学博士</div>
+                    <div class="doctor-bio">精通显微神经外科与术中电生理监测，擅长多模态引导下的脑功能区肿瘤切除与脑血管畸形手术，能最大程度保护患者神经功能。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">谢宇峰</span>
+                        <span class="doctor-title">副主任</span>
+                    </div>
+                    <div class="doctor-meta">1987年生 ｜ 上海交通大学医学院临床医学博士</div>
+                    <div class="doctor-bio">主攻神经内镜微创技术，精通经蝶窦垂体瘤切除及脑室镜手术，术后并发症控制极佳，负责科室中青年医师的手术技能培训。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">顾平是</span>
+                        <span class="doctor-title">护士长</span>
+                    </div>
+                    <div class="doctor-meta">1990年生 ｜ 浙江大学医学院护理学学士</div>
+                    <div class="doctor-bio">专攻神经外科重症（NICU）护理，对脑术后颅内压监测、意识评估及早期神经功能康复护理拥有极其丰富的临床观察力。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 骨科 -->
+        <div class="department-section">
+            <div class="dept-title">骨科 Department of Orthopedics</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">秦克强</span>
+                        <span class="doctor-title">主任</span>
+                    </div>
+                    <div class="doctor-meta">1985年生 ｜ 四川大学华西医学中心临床医学博士</div>
+                    <div class="doctor-bio">擅长关节置换、脊柱微创及复杂骨折的计算机导航复位。临床经验极其丰富，年均完成高难度骨科手术超500例，患者术后康复周期短。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">李哲倪</span>
+                        <span class="doctor-title">副主任</span>
+                    </div>
+                    <div class="doctor-meta">1987年生 ｜ 中山大学中山医学院医学硕士</div>
+                    <div class="doctor-bio">主攻运动医学与关节镜微创技术，擅长膝交叉韧带及肩袖损伤的镜下精准修复，常年为高端客户与运动员提供定制化关节康复方案。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">丁民</span>
+                        <span class="doctor-title">护士长</span>
+                    </div>
+                    <div class="doctor-meta">1990年生 ｜ 第二军医大学护理学学士</div>
+                    <div class="doctor-bio">具有军医大附院工作背景，执行力极强，擅长骨科围手术期快速康复（ERAS）流程管理与病房无菌感染控制。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 普通外科 -->
+        <div class="department-section">
+            <div class="dept-title">普通外科 Department of General Surgery</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">赵子墨</span>
+                        <span class="doctor-title">主任</span>
+                    </div>
+                    <div class="doctor-meta">1986年生 ｜ 华中科技大学同济医学院临床医学博士</div>
+                    <div class="doctor-bio">普外全科专家，精通完全腹腔镜下的胃肠道肿瘤根治及肝胆胰复杂微创手术，临床判断果断，解剖解离手法利落。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">方清华</span>
+                        <span class="doctor-title">副主任</span>
+                    </div>
+                    <div class="doctor-meta">1989年生 ｜ 山东大学齐鲁医学院临床医学硕士</div>
+                    <div class="doctor-bio">主攻甲状腺及乳腺肿瘤的微创保乳手术，在无痕甲状腺切除领域造诣颇深，深受年轻及女性患者信任。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">苏山海</span>
+                        <span class="doctor-title">护士长</span>
+                    </div>
+                    <div class="doctor-meta">1992年生 ｜ 西安交通大学医学院护理学硕士</div>
+                    <div class="doctor-bio">持有国际伤口治疗师认证，擅长复杂造口及慢性创面的专科护理，负责全院压疮防治与高难度伤口护理小组的搭建。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 综合内科 -->
+        <div class="department-section">
+            <div class="dept-title">综合内科 Department of Internal Medicine</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">梁嘉明</span>
+                        <span class="doctor-title">主任</span>
+                    </div>
+                    <div class="doctor-meta">1983年生 ｜ 北京大学医学部临床医学博士</div>
+                    <div class="doctor-bio">擅长多系统代谢性疾病、老年慢性病及内科疑难杂症的综合诊治。在全科医学与精准慢病管理领域具有深厚造诣，临床判断力极其准确。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">陈哲</span>
+                        <span class="doctor-title">副主任</span>
+                    </div>
+                    <div class="doctor-meta">1986年生 ｜ 浙江大学医学院医学硕士</div>
+                    <div class="doctor-bio">主攻呼吸与消化系统疾病，精通支气管镜及电子胃肠镜下的微创诊疗技术，对内科重症感染与多器官功能不全的抢救经验丰富。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">徐临</span>
+                        <span class="doctor-title">护士长</span>
+                    </div>
+                    <div class="doctor-meta">1988年生 ｜ 上海交通大学护理学院护理学硕士</div>
+                    <div class="doctor-bio">擅长综合内科慢性病全程管理与老年专科护理，具备极强的医患沟通能力与病区突发事件应急处置能力。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 儿科 -->
+        <div class="department-section">
+            <div class="dept-title">儿科 Department of Pediatrics</div>
+            <div class="doctor-grid">
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">周云</span>
+                        <span class="doctor-title">主任</span>
+                    </div>
+                    <div class="doctor-meta">1983年生 ｜ 上海交通大学医学院博士</div>
+                    <div class="doctor-bio">专注于小儿心血管及儿童重症医学（PICU）。在小儿先天性心脏病早期筛查、儿童急危重症抢救及发育行为评估方面拥有极高的专业声誉。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="tor-name">宋佳靖</span>
+                        <span class="doctor-title">副主任</span>
+                    </div>
+                    <div class="doctor-meta">1987年生 ｜ 首都医科大学临床医学硕士</div>
+                    <div class="doctor-bio">擅长小儿呼吸系统（如难治性哮喘、重症肺炎）及免疫系统疾病的诊治，诊疗风格亲和细致，深受患儿及家属信赖。</div>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-header">
+                        <span class="doctor-name">廖停</span>
+                        <span class="doctor-title">护士长</span>
+                    </div>
+                    <div class="doctor-meta">1992年生 ｜ 重庆医科大学护理学学士</div>
+                    <div class="doctor-bio">专攻新生儿与儿科重症护理，精通极低体重儿护理与小儿静脉穿刺技术，建立并推行了儿科无痛化护理操作流程。</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 仁安国际医院 REN'AN INTERNATIONAL HOSPITAL. All Rights Reserved.</p >
+        <p style="margin-top: 5px; opacity: 0.7;">地址：杭州市西湖区灵荫路190号 ｜ 电话：0571-8888XXXX</p >
+    </footer>
+
+</body>
+</html>
+
+
+   
